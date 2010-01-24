@@ -1,0 +1,112 @@
+$if(legacy-header)$
+	$legacy-header$
+$else$
+	\documentclass[11pt,article,oneside]{memoir}
+	\input{vc}
+	\usepackage[usenames,dvipsnames]{color}                     
+		$if(xetex)$
+			\usepackage{ifxetex}
+				\ifxetex
+  					\usepackage{fontspec,xltxtra,xunicode}
+  					\defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
+				\else
+  					\usepackage[mathletters]{ucs}
+  					\usepackage[utf8x]{inputenc}
+				\fi
+		$else$
+			\usepackage[utf8x]{inputenc}
+	  	$endif$
+
+		$if(lhs)$
+			\usepackage{listings}
+			\lstnewenvironment{code}{\lstset{language=R,basicstyle=\small\ttfamily}}{}
+		$endif$
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+$endif$ 
+
+$if(verbatim-in-note)$
+\usepackage{fancyvrb}
+$endif$
+
+$if(fancy-enums)$
+\usepackage{enumerate}
+$endif$
+
+$if(tables)$
+\usepackage{array}
+% This is needed because raggedright in table elements redefines \\:
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\let\PBS=\PreserveBackslash
+$endif$  
+
+$if(strikeout)$
+\usepackage[normalem]{ulem}
+$endif$  
+
+$if(subscript)$
+\newcommand{\textsubscr}[1]{\ensuremath{_{\scriptsize\textrm{#1}}}}
+$endif$  
+
+$if(links)$
+\usepackage[xetex,
+ 	breaklinks=true,
+	colorlinks=true,
+	urlcolor=BlueViolet,
+	plainpages=false,
+  	pdfpagelabels,
+  	bookmarksnumbered,
+  	]{hyperref}
+$endif$
+
+$if(url)$
+\usepackage{url}
+$endif$ 
+
+$if(graphics)$
+\usepackage{graphicx}
+$endif$
+
+$if(numbersections)$
+$else$
+\setcounter{secnumdepth}{0}
+$endif$
+
+$if(verbatim-in-note)$
+\VerbatimFootnotes % allows verbatim text in footnotes
+$endif$
+
+$for(header-includes)$
+$header-includes$
+$endfor$
+
+$if(title)$
+\title{\bigskip \bigskip $title$}
+$endif$ 
+ 
+\author{$for(author)$$author$$sep$\\$endfor$}
+
+$if(date)$
+\date{$date$}
+$endif$
+
+\begin{document}  
+\setromanfont[Mapping=tex-text,Numbers=OldStyle]{Old Style 7 Std} 
+\setsansfont[Mapping=tex-text]{Old Style 7 Std} 
+\setmonofont[Mapping=tex-text,Scale=0.8]{Pragmata}
+\chapterstyle{article-4} 
+\pagestyle{kjh}
+
+\published{Incomplete Draft. Please do not cite without permission.}
+
+$if(title)$
+\maketitle
+$endif$
+
+$if(toc)$
+\tableofcontents
+
+$endif$
+$body$
+
+\end{document}
