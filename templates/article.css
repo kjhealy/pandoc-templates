@@ -1,0 +1,206 @@
+/* -------------------------------------------------------------- 
+   
+   article.css
+   * Overrides default styles in blueprint
+   * Adds some borders.
+   * Loaded last. 
+
+
+-------------------------------------------------------------- */
+
+/* Default font settings. The font-size percentage is of 16px. */
+
+body { 
+  font-size: 100%;
+  color: #2222; 
+/*  font-family: Helvetica, Arial, sans-serif;         */
+  font-family: Calibri, Tahoma, Verdana, sans-serif;         
+  padding-right: 1em;
+  padding-left: 4em;
+  max-width: 46em; 
+}
+
+.image-border {
+	
+}
+
+
+/* Border with more whitespace, spans one column. On both sides */
+.colborder-both {
+  padding-left: 18px;
+  margin-left: 18px;
+  border-left: 1px solid #eee;
+  padding-right: 18px;
+  margin-right: 18px;
+  border-right: 1px solid #eee;
+}
+
+/* Headings
+-------------------------------------------------------------- */
+
+h1,h2,h3,h4,h5,h6 { font-weight: normal; color: #111; }
+
+h1 { font-size: 2em; line-height: 1; margin-bottom: 0.5em; color:#C20000; } /*LBG Red*/ 
+h2 { font-size: 1.6em; margin-bottom: 0.5em; color:#4444; }
+h3 { font-size: 1.2em; line-height: 1; margin-bottom: 0.5em; color:#4444; }
+h4 { font-size: 1em; font-weight: bold; line-height: 1.25; margin-bottom: 1.25em; margin-top: 0.25em; color:#C20000; font-family: Myriad Pro, Helvetica, sans-serif}
+h5 { font-size: 1em; font-weight: normal; line-height: 1.25; margin-bottom: 1.25em; color:#2222;}
+h6 { font-size: 1em; font-weight: bold; margin-bottom: 1.1em;}
+
+h1 img, h2 img, h3 img, 
+h4 img, h5 img, h6 img {
+  margin: 0;
+}
+  
+/* Text elements
+-------------------------------------------------------------- */
+
+.large      { font-size: 1.1em; line-height: 1.5em; margin-bottom: 1.5em; }
+
+p           { font-size: 1.12em; line-height: 1.3em; margin: 0 0 1.5em; } 
+p.last      { margin-bottom: 0; }  
+p img       { float: left; margin: 1.5em 1.5em 1.5em 0; padding: 0; }  
+p.pullquote { color: #4B1B00; font-size: 3em; font-family: Georgia, Serif; } /*For front page pull quote*/ 
+p.alert     { background: #FFF6BF; color: #514721; border-color: #FFD324; } /*For alert boxes */ 
+img         { margin: 0 0 1.5em; border: none;}
+
+a {color: #222;}
+a:link, a:visited {
+	text-decoration: none;
+	color: #222;
+	border-color: #999;
+	border-width: 0 0 1px 0;
+	border-style: none none solid none;
+	padding: 0px 0px 1px 0px;
+    }
+
+a.image-border:link {
+		text-decoration: none;
+		border: 0 none;
+		} 
+a.image-border:visited {
+	text-decoration: none;
+	border: 0 none;
+	   }		
+		
+
+blockquote  { margin: 1.5em; color: #666; font-style: italic; }
+strong      { font-weight: bold; }
+em,dfn      { font-style: italic; background: none;} /*Need to explicitly set 'none' on background, or it inherits from blueprint*/
+em.hilite   { font-style: italic; background: #ffc; } 
+dfn         { font-weight: bold; }
+sup, sub    { line-height: 0; }
+
+abbr, 
+acronym     { border-bottom: 1px dotted #666; }
+address     { margin: 0 0 1.5em; font-style: italic; }
+del         { color:#666; }
+
+pre,code    { margin: 1.5em 0; white-space: pre; }
+tt          { display: block; margin: 1.5em 0; line-height: 1.5; }
+pre,code,tt { font: 1em 'andale mono', 'lucida console', monospace; line-height: 1.5; }      
+
+/* Use a .alertbox to create a padded box inside a column.  */ 
+.alertbox {
+  padding: .8em; 
+  margin-bottom: 1em; 
+  border: 2px solid;   
+  padding: 1.5em; 
+  background: #E6EFC2; 
+  color: #264409; 
+  border-color: #C6D880; 
+}
+
+/* Lists
+-------------------------------------------------------------- */
+
+li ul, 
+li ol       { margin:0 1.5em; }
+ul, ol      { margin: 0 1.5em 1.5em 1.5em; }
+
+ul.menu     { list-style-type: none; margin: 0 0 0 0; }
+ol          { list-style-type: decimal; }
+
+dl          { margin: 0 0 1.5em 0; }
+dl dt       { font-weight: bold; }
+dd          { margin-left: 1.5em;}
+
+
+#pubsList ul { 
+	list-style: none;  
+		margin-left: 0;
+		padding-left: 1em;
+		text-indent: -1em;
+}
+
+#pubsList li {margin-top: 1.2em; }
+
+ 
+/* Menu
+-------------------------------------------------------------- */
+#mainMenu {
+  border-top: 1px solid;
+  border-color:  #999999;   
+  float: left;
+  width: 100%;
+  clear: both;  
+}
+
+#mainMenu ul {
+  margin: 0;
+  margin-bottom: 5px;
+  padding: 0;
+}
+
+#mainMenu li {
+  display: inline;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#mainMenu li a {
+  float: left;
+  margin: 0 2px;
+  padding: 5px 0.5em;
+  border-bottom: none;
+
+  font: 400 1.2em;
+  font-family: Myriad Pro, Helvetica, sans-serif;
+  text-decoration: none;
+  color: #4B1B00;   /*AZ Stylesheet "Town Brown" (http://externalrelations.arizona.edu/styleguide/pdf/UA_ExtendedPalette.pdf) */
+}
+
+#mainMenu li a:hover,
+#mainMenu li a.here {
+  color: #CC0033;
+  border-top: 5px solid #000;
+  border-bottom: none;
+}
+
+#mainMenu li a.last {
+  margin-right: 0;
+}  
+#mainMenu a:visited { 
+	border-bottom: none;
+}
+
+/**************************************************************
+   Alignment classes for menu
+ **************************************************************/
+
+.floatLeft {
+  float: left;
+}
+
+.floatRight {
+  float: right;
+}
+
+.alignLeft {
+  text-align: left;
+}
+
+.alignRight {
+  text-align: right;
+} 
