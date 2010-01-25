@@ -2,14 +2,9 @@
 
 ## Description
 
-Some very rudimentary [pandoc](http://johnmacfarlane.net/pandoc/)
-templates, meant to go in `~/.pandoc/templates`, be pointed to
-directly with the `--template=` or `--css` switches as appropriate.
-Pandoc is really terrific and, I find, much more flexible than
-MultiMarkdown. So I've started to experiment with it a bit. Taking
-advantage of its capabilities in Emacs is made easier by Joost
-Kremers'
-[pandoc minor-mode](http://user.uni-frankfurt.de/~kremers/pandoc-mode.html).
+Some very rudimentary [pandoc](http://johnmacfarlane.net/pandoc/) templates, meant to go in `~/.pandoc/templates`, be pointed to directly with the `--template=` or `--css` switches as appropriate, and used with what's provided in [latex-custom-kjh](http://kjhealy.github.com/latex-custom-kjh/). 
+
+Pandoc is really terrific and, I find, much more flexible than MultiMarkdown. So I've started to experiment with it a bit. Taking advantage of its capabilities in Emacs is made easier by Joost Kremers' [pandoc minor-mode](http://user.uni-frankfurt.de/~kremers/pandoc-mode.html). The latter is included with my fork of the [Emacs Starter Kit](http://kjhealy.github.com/emacs-starter-kit/).
 
 ## Notes
 
@@ -19,7 +14,7 @@ Kremers'
     in [latex-custom-kjh](http://github.com/kjhealy/latex-custom-kjh).
     If you rename `xelatex.template` to `latex.template` in
     `~/.pandoc/templates/` it will override pandoc's default template
-    and likely break any setup that doesn't look just like mine.
+    and very likely break any setup that doesn't look just like mine.
 
 
 ## Contact
