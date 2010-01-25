@@ -1,6 +1,4 @@
 # Pandoc Templates 
-# Kieran Healy 
-# 24-1-2010
 
 ## Description
 
@@ -24,4 +22,5 @@ Kremers'
     and likely break any setup that doesn't look just like mine.
 
 
-
+## Contact
+Kieran Healy, kjhealy@gmail.com
