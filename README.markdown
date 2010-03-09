@@ -12,9 +12,10 @@ Pandoc is really terrific and, I find, much more flexible than MultiMarkdown. So
     format similar to the layout of my own website.
 -   The xetex template is meant to be used with everything provided
     in [latex-custom-kjh](http://github.com/kjhealy/latex-custom-kjh).
-    If you rename `xelatex.template` to `latex.template` in
-    `~/.pandoc/templates/` it will override pandoc's default template
-    and very likely break any setup that doesn't look just like mine.
+    If you rename `article-xelatex.template` or `referee-xelatex.template` 
+	to `latex.template` in `~/.pandoc/templates/` it will override 
+	pandoc's default template (and very likely break any setup that doesn't 
+	look just like mine).
 
 
 ## Contact
