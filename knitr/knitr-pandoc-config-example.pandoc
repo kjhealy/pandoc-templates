@@ -1,12 +1,12 @@
 format: html
 s:
-bibliography: /Users/kjhealy/Document/bibs/socbib.bib
+bibliography: /Users/kjhealy/Documents/bibs/socbib.bib
 css: /Users/kjhealy/.pandoc/templates/article.css
 o: output.html
 
 format: latex
 s:
-bibliography: /Users/kjhealy/Document/bibs/socbib.bib
+bibliography: /Users/kjhealy/Documents/bibs/socbib.bib
 latex-engine: xelatex
 template: /Users/kjhealy/.pandoc/templates/xelatex.template
 output: output.pdf
