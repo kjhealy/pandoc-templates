@@ -9,4 +9,5 @@ s:
 bibliography: /Users/kjhealy/Documents/bibs/socbib.bib
 latex-engine: xelatex
 template: /Users/kjhealy/.pandoc/templates/xelatex.template
-output: output.pdf
+output: output.tex
+

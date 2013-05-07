@@ -67,9 +67,9 @@ $if(natbib)$
 $if(biblio-files)$
 $if(biblio-title)$
 $if(book-class)$
-\renewcommand\bibname{$biblio-title$}
+\renewcommand\bibname{Bibliography}
 $else$
-\renewcommand\refname{$biblio-title$}
+\renewcommand\refname{References}
 $endif$
 $endif$
 \bibliography{$biblio-files$}
@@ -77,7 +77,7 @@ $endif$
 $endif$
 $endif$
 $if(biblatex)$
-\printbibliography$if(biblio-title)$[title=$biblio-title$]$endif$
+\printbibliography$if(biblio-title)$[title=References]$endif$
 
 $endif$
 $for(include-after)$
