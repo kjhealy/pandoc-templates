@@ -1,0 +1,13 @@
+format: html
+s:
+mathjax:
+number-sections:
+bibliography:
+o:
+
+format: latex
+latex-engine: xelatex
+s:
+number-sections:
+output: output.pdf
+template: /Users/kjhealy/.pandoc/templates/xelatex.template
