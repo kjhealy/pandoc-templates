@@ -1,0 +1,379 @@
+/* 
+ This document has been created with Marked.app <http://markedapp.com>, Copyright 2011 Brett Terpstra
+ Please leave this notice in place, along with any additional credits below.
+ ---------------------------------------------------------------
+ Paper by Jonathan Poritsky
+ based on SwissStyle by Brett Terpstra
+ Page Curl Effect by Matt Hamm http://matthamm.com/box-shadow-curl.html
+ Page shading based on http://www.sitepoint.com/pure-css3-paper-curl/
+ */
+
+body
+{
+    -webkit-font-smoothing:antialiased;
+    font:normal .8764em/1.5em Arial,Verdana,sans-serif;
+    text-align:center;
+    background:#eee;
+}
+#wrapper
+{
+    width: 85%;
+    margin:2em auto !important;
+    padding:2em;
+    text-align:left;
+    position: relative;
+    background:rgb(243, 241, 232);
+    border: 1px solid #efefef;
+    -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset;
+    -webkit-border-radius:20px;
+}
+#wrapper:before,#wrapper:after
+{
+    content: '';
+    z-index: -1;
+    position: absolute;
+    left: 16px;
+    bottom: 16px;
+    width: 70%;
+    max-width: 300px; /* avoid rotation causing ugly appearance at large container widths */
+    max-height: 100px;
+    height: 55%;
+    -webkit-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    -webkit-transform: skew(-15deg) rotate(-6deg);
+    -moz-transform: skew(-15deg) rotate(-6deg);
+    -ms-transform: skew(-15deg) rotate(-6deg);
+    -o-transform: skew(-15deg) rotate(-6deg);
+    transform: skew(-15deg) rotate(-6deg);
+    -webkit-border-radius:20px;
+
+}
+#wrapper:after
+{
+    left: auto;
+    right: 10px;
+    -webkit-transform: skew(15deg) rotate(6deg);
+}
+html>body
+{
+    font-size:13px
+}
+
+li
+{
+    font-size:110%
+}
+
+li li
+{
+    font-size:100%
+}
+
+li p
+{
+    font-size:100%;
+    margin:.5em 0
+}
+
+h1
+{
+    color:#000;
+    font-size:2.2857em;
+    line-height:.6563em;
+    margin:.6563em 0
+}
+
+h2
+{
+    color:#111;
+    font-size:1.7143em;
+    line-height:.875em;
+    margin:.875em 0
+}
+
+h3
+{
+    color:#111;
+    font-size:1.5em;
+    line-height:1em;
+    margin:1em 0
+}
+
+h4
+{
+    color:#111;
+    font-size:1.2857em;
+    line-height:1.1667em;
+    margin:1.1667em 0
+}
+
+h6
+{
+    font-size:1em;
+    line-height:1.5em;
+    margin:1.5em 0
+}
+
+body,p,td,div
+{
+    color:#111;
+    font-family:'Helvetica Neue',Arial,sans-serif;
+    word-wrap:break-word
+}
+
+h1,h2,h3,h4,h5,h6
+{
+    line-height:1.5em
+}
+
+a
+{
+    -webkit-transition:color .2s ease-in-out;
+    color:#0d6ea1;
+    text-decoration:none
+}
+
+a:hover
+{
+    color:#3593d9
+}
+
+h2 em
+{
+    color:#111;
+    padding-left:10px;
+    text-shadow:0 1px 0 #FFF
+}
+
+.footnote
+{
+    color:#0d6ea1;
+    font-size:.8em;
+    vertical-align:super
+}
+
+#wrapper img
+{
+    max-width:100%;
+}
+
+dd
+{
+    margin-bottom:1em
+}
+
+li > p:first-child
+{
+    margin:0
+}
+
+ul ul,ul ol
+{
+    margin-bottom:.4em
+}
+
+caption,col,colgroup,table,tbody,td,tfoot,th,thead,tr
+{
+    border-spacing:0
+}
+
+table
+{
+    border:1px solid rgba(0,0,0,0.25);
+    border-collapse:collapse;
+    display:table;
+    empty-cells:hide;
+    margin:-1px 0 23px;
+    padding:0;
+    table-layout:fixed
+}
+
+caption
+{
+    display:table-caption;
+    font-weight:700
+}
+
+col
+{
+    display:table-column
+}
+
+colgroup
+{
+    display:table-column-group
+}
+
+tbody
+{
+    display:table-row-group
+}
+
+tfoot
+{
+    display:table-footer-group
+}
+
+thead
+{
+    display:table-header-group
+}
+
+td,th
+{
+    display:table-cell
+}
+
+tr
+{
+    display:table-row
+}
+
+table th,table td
+{
+    font-size:1.1em;
+    line-height:23px;
+    padding:0 1em
+}
+
+table thead
+{
+    background:rgba(0,0,0,0.15);
+    border:1px solid rgba(0,0,0,0.15);
+    border-bottom:1px solid rgba(0,0,0,0.2)
+}
+
+table tbody
+{
+    background:rgba(0,0,0,0.05)
+}
+
+table tfoot
+{
+    background:rgba(0,0,0,0.15);
+    border:1px solid rgba(0,0,0,0.15);
+    border-top:1px solid rgba(0,0,0,0.2)
+}
+
+figure
+{
+    display:inline-block;
+    margin-bottom:1.2em;
+    position:relative;
+    border: 5px solid #fff;
+    -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset;
+}
+
+figcaption
+{
+    -webkit-transition:all .2s ease-in-out;
+    background:rgba(0,0,0,0);
+    bottom:0;
+    color:rgba(255,255,255,0);
+    left:0;
+    position:absolute;
+    text-align:center;
+    width:100%
+}
+
+figure:hover
+{
+    cursor:pointer;
+}
+
+figcaption:hover
+{
+    background:rgba(0,0,0,.56);
+    color:rgba(255,255,255,1)
+}
+
+.poetry pre
+{
+    display:block;
+    font-family:Georgia, Garamond, serif!important;
+    font-size:110%!important;
+    font-style:italic;
+    line-height:1.6em;
+    margin-left:1em
+}
+
+.poetry pre code
+{
+    font-family:Georgia, Garamond, serif!important
+}
+
+sup,sub,a.footnote
+{
+    font-size:1.4ex;
+    height:0;
+    line-height:1;
+    position:relative;
+    vertical-align:super
+}
+
+p,h5
+{
+    font-size:1.1429em;
+    line-height:1.3125em;
+    margin:1.3125em 0
+}
+
+dt,th
+{
+    font-weight:700
+}
+
+table tr:nth-child(odd),table th:nth-child(odd),table td:nth-child(odd)
+{
+    background:rgba(255,255,255,0.06)
+}
+
+table tr:nth-child(even),table td:nth-child(even)
+{
+    background:rgba(0,0,0,0.06)
+}
+
+@media print {
+    body
+    {
+        overflow:auto
+    }
+    
+    #wrapper
+    {
+        background:#fff;
+        color:#303030;
+        font-size:85%;
+        padding:10px;
+        position:relative;
+        text-indent:0
+    }
+}
+
+@media screen {
+    .inverted {
+        background:#333
+    }
+    
+    .inverted p,.inverted td,.inverted li,.inverted h1,.inverted h2,.inverted h3,.inverted h4,.inverted h5,.inverted h6,.inverted pre,.inverted code,.inverted th
+    {
+        color:#eee!important
+    }
+    
+    .inverted a
+    {
+        color:#fff;
+        text-decoration:underline
+    }
+    
+    #wrapper
+    {
+        padding:20px
+    }
+    
+    .inverted #wrapper
+    {
+        background:#333;
+    }
+}
