@@ -1,4 +1,4 @@
-# Pandoc Templates, CSS files, and 
+# Pandoc Templates, CSS files, and a shell script for use with Marked.app
 
 ## Description
 
