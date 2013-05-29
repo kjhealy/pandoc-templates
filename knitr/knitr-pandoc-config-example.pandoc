@@ -1,13 +1,14 @@
-format: html
+format: html5
 s:
-bibliography: /Users/kjhealy/Documents/bibs/socbib.bib
+bibliography: /Users/kjhealy/Documents/bibs/socbib-pandoc.bib
 css: /Users/kjhealy/.pandoc/templates/article.css
+template: /Users/kjhealy/.pandoc/templates/html.template
 o: output.html
 
 format: latex
 s:
-bibliography: /Users/kjhealy/Documents/bibs/socbib.bib
+S:
 latex-engine: xelatex
+bibliography: /Users/kjhealy/Documents/bibs/socbib-pandoc.bib
 template: /Users/kjhealy/.pandoc/templates/xelatex.template
-output: output.tex
-
+o: output.tex
