@@ -22,6 +22,9 @@ I use these files together with my [Social Science Starter Kit](http://kjhealy.g
     files can be added in Marked > Style > Custom CSS.
 - The configuration file in the `knitr/` folder is an example to help
   you produce HTML or `.tex` from inside R, using knitr and its `pandoc()` helper function.
+- The CSL file in the `csl/` folder makes a tiny change to a Chicago Notes CSL file so you 
+  can use it to output citation information in the body text of a document. This makes
+  it useful for lists of references in CVs and course syllabuses. 
 
 
 ## Contact
