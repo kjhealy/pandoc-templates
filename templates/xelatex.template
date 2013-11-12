@@ -51,7 +51,7 @@ $endif$
 \chapterstyle{article-4} 
 \pagestyle{kjh}
 
-\published{Incomplete Draft. Please do not cite without permission.}
+\published{Please do not cite without permission.}
 
 $if(title)$
 \maketitle
