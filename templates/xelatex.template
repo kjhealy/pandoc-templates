@@ -34,16 +34,15 @@ $endif$
 $if(title)$
 \title{\bigskip \bigskip $title$}
 $endif$ 
- 
-\author{\bigskip\Large $for(author)$$author$$sep$\\$endfor$}
+
+%\author{$for(author)$$author$$sep$\\$endfor$}
+
+\author{\Large $for(author)$$author.name$\vspace{0.05in} \newline\normalsize\emph{$author.affiliation$} $sep$ \and $endfor$}
+%\author{$for(author)$$author.name$ ($author.affiliation$)$sep$ \and $endfor$}
+
+\date{\vspace{-0.12in}\footnotesize\url{$for(author)$$author.email$}$sep$ \and $endfor$}
 
 \begin{document}  
-
-\setsansfont[Mapping=tex-text, BoldFont={* Bold SemiCondensed}, ItalicFont={* Semibold SemiCondensed Italic}]{Myriad Pro}
-\setmonofont[Mapping=tex-text,Scale=MatchLowercase]{PragmataPro}
-\setromanfont[Mapping=tex-text,Numbers=OldStyle]{Minion Pro}
-
-
 \setkeys{Gin}{width=1\textwidth} 	
 \setromanfont[Mapping=tex-text,Numbers=OldStyle]{Minion Pro} 
 \setsansfont[Mapping=tex-text]{Minion Pro} 
@@ -51,7 +50,7 @@ $endif$
 \chapterstyle{article-4} 
 \pagestyle{kjh}
 
-\published{Please do not cite without permission.}
+\published{$date$. Incomplete Draft. Please do not cite without permission.}
 
 $if(title)$
 \maketitle
@@ -63,6 +62,16 @@ $if(toc)$
 \setcounter{tocdepth}{$toc-depth$}
 \tableofcontents
 }
+$endif$
+
+$if(abstract)$
+
+\begin{abstract}
+
+$abstract$
+
+\end{abstract}
+
 $endif$
 
 $body$
