@@ -21,12 +21,15 @@ I use these files together with my [Social Science Starter Kit](http://kjhealy.g
     instead of using a shell script I simply specify the Path to
     Pandoc like this (e.g.): `/usr/bin/pandoc` and the various
     switches and arguments to pandoc in the 'Args' field below it,
-    like this: `-r
+    like this:
+    
+    ```-r
     markdown+simple_tables+table_captions+yaml_metadata_block -w html
     -s -S --template=/Users/kjhealy/.pandoc/templates/html.template
     --filter pandoc-citeproc
-    --bibliography=/Users/kjhealy/Documents/bibs/socbib-pandoc.bib`. Then
-    I tell Marked to use this by default.
+    --bibliography=/Users/kjhealy/Documents/bibs/socbib-pandoc.bib```
+    
+    Then I tell Marked to use this by default.
 - The CSS files can be added in Marked > Style > Custom CSS. Marked
   can then use them to format the HTML output.
 - The configuration file in the `knitr/` folder is an example to help
