@@ -23,11 +23,12 @@ I use these files together with my [Social Science Starter Kit](http://kjhealy.g
     switches and arguments to pandoc in the 'Args' field below it,
     like this:
     
-    ```-r
-    markdown+simple_tables+table_captions+yaml_metadata_block -w html
+    ```
+    -r markdown+simple_tables+table_captions+yaml_metadata_block -w html
     -s -S --template=/Users/kjhealy/.pandoc/templates/html.template
     --filter pandoc-citeproc
-    --bibliography=/Users/kjhealy/Documents/bibs/socbib-pandoc.bib```
+    --bibliography=/Users/kjhealy/Documents/bibs/socbib-pandoc.bib
+    ```
     
     Then I tell Marked to use this by default.
 - The CSS files can be added in Marked > Style > Custom CSS. Marked
