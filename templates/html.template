@@ -38,13 +38,18 @@ $include-before$
 $endfor$
 $if(title)$
 <header>
-<h1 class="title">$title$</h1>
-$for(author)$
-<h2 class="author">$author$</h2>
-$endfor$
 $if(date)$
 <h3 class="date">$date$</h3>
 $endif$
+
+<h1 class="title">$title$</h1>
+
+
+$for(author)$
+<h2 class="author">$author.name$</h2>
+<p class="affilation"><em>$author.affiliation$</em></p>
+$endfor$
+
 </header>
 $endif$
 $if(toc)$
@@ -52,6 +57,14 @@ $if(toc)$
 $toc$
 </nav>
 $endif$
+
+$if(abstract)$
+
+<p class="small"><strong>Abstract: </strong><em>$abstract$</em></p>
+
+$endif$
+
+
 $body$
 $for(include-after)$
 $include-after$
