@@ -76,7 +76,6 @@ $endif$
 
 $body$
 
-
 $if(natbib)$
 $if(biblio-files)$
 $if(biblio-title)$
@@ -86,6 +85,7 @@ $else$
 \renewcommand\refname{References}
 $endif$
 $endif$
+
 \bibliography{$biblio-files$}
 
 $endif$
