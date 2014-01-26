@@ -1,0 +1,81 @@
+---
+title: This Article Looks Quite Authoritative
+author:
+- name: Kieran Healy
+  affiliation: Duke University
+  email: kjhealy@soc.duke.edu
+- name: Joe Bloggs
+  affiliation: University of North Carolina, Chapel Hill
+  email: joebloggs@unc.edu
+date: January 2014
+abstract: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enimad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+bibliography: <!-- \bibliography{/Users/kjhealy/Documents/bibs/socbib-pandoc.bib} This is a hack for Emacs users so that RefTeX knows where your bibfile is, and you can use RefTeX citation completion in your .md files. -->
+...
+
+
+
+```{r Cleanup, include=FALSE}
+## This is where your R code goes
+## source("../setup/clean-up.r")
+```
+
+```{r Setup, include=FALSE, results="hide", warning=FALSE}
+## This chunk is for setting nice options for the output. Notice how
+## we create both png and pdf files by default, so that we can easily process
+## to both HTML and LaTeX/PDF files later.
+opts_chunk$set(fig.path='figures/paper-', cache.path='cache/report-', dev=c("png","pdf"), fig.width=14, fig.height=7, fig.show='hold', fig.lp="fig:", cache=TRUE, par=TRUE, echo=FALSE, results="hide", message=FALSE, warning=FALSE)
+knit_hooks$set(par=function(before, options, envir){
+if (before && options$fig.show!='none') par(mar=c(4,4,.1,.1),cex.lab=.95,cex.axis=.9,mgp=c(2,.7,0),tcl=-.3)
+}, crop=hook_pdfcrop) 
+```
+
+# Introduction
+You have to knit this document in R, using the `knitr` library. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua [@fourcade13classsituat]. Notice that citation there [@healy02digittechnculturgoods]. Ut enimad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+
+# Results
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enimad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enimad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enimad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+```{r sample-plot, fig.lp="fig:", fig.cap="Tea and Biscuits are correlated but there may be identifiability issues."}
+
+###--------------------------------------------------
+### Code for a nice plot 
+###--------------------------------------------------
+library(ggplot2)
+tea <- rnorm(100)
+biscuits <- tea + rnorm(100,0,1.3)
+p.out <- qplot(tea, biscuits) + geom_smooth(method="lm") + scale_x_continuous(name="Tea") + scale_y_continuous(name="Biscuits") + theme_bw() 
+
+print(p.out)
+
+
+```
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enimad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+```{r sample-table, results="asis"}
+
+library(ascii)
+library(memisc)
+
+chips <- tea + rnorm(100,0,1.8)
+cheese <- tea + rnorm(100,0,1.5)
+
+out.m3 <- lm(tea ~ biscuits + chips + cheese)
+out.m2 <- update(out.m3, .~. - cheese)
+out.m1 <- update(out.m3, .~. - chips - cheese)
+
+out.all <- mtable("Model 1"=out.m1, "Model 2"=out.m2, "Model 3"=out.m3, summary.stats=c("Deviance", "N"))
+
+print(ascii(out.all), caption="OLS regression models on Tea.", style=c("d", "d", "d"), type="pandoc")
+
+```
+
+# Conclusion
+Right now, your options for formatting bibliographies using Pandoc are to offload the work to biblatex (or natbib), or have pandoc handle everything via `citeproc` and CSL files. The latter way is simpler and cleaner, especially if we want to preserve the ability to easily generate both HTML and LaTeX/PDF outputs. You have to do two things. First, explicitly specify the "References" header. Second, pandoc does not (yet) support some standard layout options for bibliography entries---it will treat each entry like a regular paragraph, when we want the first lines of each bibliography entry to have no indentation, with subsequent lines (if any) to hang in from the margin. The LaTeX commands below the "References" header accomplish this . The LaTeX commands are ignored when HTML is produced, and do not show up in the output file.
+
+# References
+\setlength{\parindent}{-0.2in}
+\setlength{\leftskip}{0.2in}
+\setlength{\parskip}{8pt}
+\vspace*{-0.2in}
+\noindent
