@@ -37,10 +37,11 @@ $endif$
 
 %\author{$for(author)$$author$$sep$\\$endfor$}
 
-\author{\Large $for(author)$$author.name$\vspace{0.05in} \newline\normalsize\emph{$author.affiliation$} $sep$ \and $endfor$}
+\author{$for(author)$\Large $author.name$\vspace{0.05in} \newline\normalsize\emph{$author.affiliation$} \newline\footnotesize \url{$author.email$}\vspace*{0.2in}\newline $sep$ \and $endfor$}
+
 %\author{$for(author)$$author.name$ ($author.affiliation$)$sep$ \and $endfor$}
 
-\date{\vspace{-0.12in}\footnotesize\url{$for(author)$$author.email$}$sep$ \and $endfor$}
+\date{}
 
 \begin{document}  
 \setkeys{Gin}{width=1\textwidth} 	
