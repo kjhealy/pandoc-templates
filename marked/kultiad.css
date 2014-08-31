@@ -19,7 +19,7 @@ html, button, input, select, textarea {
 
 html, body, button, input, select, textarea {
     color: #57534A;
-    font-family: "PT Serif","Calluna","Arno Pro",serif;
+    font-family: "Fira Sans","Myriad Pro","Myriad",sans-serif;
     font-size: 18px;
     font-weight: 300;
 }
@@ -53,25 +53,32 @@ body {
 
 h1, h2, h3, dt {
     color: #423F37;
-    font-weight: 700;
+    font-weight: 500;
 }
 
 h1 {
-    font-size: 2em;
+    font-size: 2.5em;
     margin: 0.67em 0;
 }
+
+h1, .title {
+    margin-bottom: 1em;
+}
+
 h2, .article-list .article-title {
+    font-size: 1.65em;
+    margin: 1.25em 0 0 0;
+    margin-top: 1.2em 0 0 0;
+    padding-bottom:0;
     padding-top: 1em;
-    padding-bottom: 0em;
-    border-bottom: none;
-    font-size: 1.5em;
-    margin: 0.83em 0;
 }
 h3, dt {
-    padding-top: 1em;
     font-size: 1.17em;
-    font-style: italic;
-    margin: 1em 0;
+    font-style: oblique;
+    margin: 1.2em 0;
+    margin-bottom: 0;
+    padding-bottom:0;
+    padding-top: 1em;
 }
 h4 {
     font-size: 1em;
@@ -102,8 +109,8 @@ a:hover {
 
 p, pre {
     margin: 1em 0;
+    font-weight: 300;
 }
-
 code, kbd, pre, samp {
     font-family: monospace,serif;
     font-size: 1em;
@@ -278,14 +285,13 @@ caption{display:table-caption;font-weight:300;font-size:1.3em;text-transform:upp
     font-size: 0.8rem;
 }
 
-.title{
-    padding-bottom: 1em;
-}
-
 .author{
-  padding-top: 0.5em;
-  font-size:1.24em;
-  line-height:0.5em;
+  margin-top: 1em;
+  margin-bottom: 0;
+  padding-bottom:0;
+  padding-top:0.5em;
+  line-height: 0;
+  font-size:1.4em;
 }
 
 .date {
@@ -294,19 +300,13 @@ caption{display:table-caption;font-weight:300;font-size:1.3em;text-transform:upp
     font-size: 0.8rem;
 }
 
+.affiliation {
+    margin-top: 0;
+    margin-bottom: 0.25em;
+}
+
 .caption {
    display: block;
    font-size: 0.8rem;
    font-style: italic;
-}
-
-.small{
- font-size:0.8em;
-}
-
-.affiliation{
- margin-top: 0;
- padding-top: 0;
- font-size:0.9em;
- font-style: italic;
 }
