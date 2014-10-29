@@ -23,10 +23,27 @@ bibliography: <!-- \bibliography{/Users/kjhealy/Documents/bibs/socbib-pandoc.bib
 ## This chunk is for setting nice options for the output. Notice how
 ## we create both png and pdf files by default, so that we can easily process
 ## to both HTML and LaTeX/PDF files later.
-opts_chunk$set(fig.path='figures/paper-', cache.path='cache/report-', dev=c("png","pdf"), fig.width=14, fig.height=7, fig.show='hold', fig.lp="fig:", cache=TRUE, par=TRUE, echo=FALSE, results="hide", message=FALSE, warning=FALSE)
+
+opts_chunk$set(fig.path='../figures/paper-',
+               cache.path='../cache/report-',
+               dev=c("png","pdf"),
+               fig.width=14,
+               fig.height=7,
+               dpi=300,
+               fig.show='hold',
+               fig.lp="fig:",
+               cache=TRUE,
+               par=TRUE,
+               echo=FALSE,
+               results="hide",
+               message=FALSE,
+               warning=FALSE)
+
 knit_hooks$set(par=function(before, options, envir){
-if (before && options$fig.show!='none') par(mar=c(4,4,.1,.1),cex.lab=.95,cex.axis=.9,mgp=c(2,.7,0),tcl=-.3)
-}, crop=hook_pdfcrop) 
+    if (before && options$fig.show!='none') par(mar=c(4,4,.1,.1),cex.lab=.95,cex.axis=.9,mgp=c(2,.7,0),tcl=-.3)
+}, crop=hook_pdfcrop)
+
+
 ```
 
 # Introduction
@@ -35,7 +52,7 @@ You have to knit this document in R, using the `knitr` library. Lorem ipsum dolo
 # Results
 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enimad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enimad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enimad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-```{r sample-plot, fig.lp="fig:", fig.cap="Tea and Biscuits are correlated but there may be identifiability issues."}
+```{r sample-plot, fig.cap="Tea and Biscuits are correlated but there may be identifiability issues."}
 
 ###--------------------------------------------------
 ### Code for a nice plot 
