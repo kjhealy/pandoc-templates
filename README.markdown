@@ -64,4 +64,4 @@ What's included?
 
 
 ## Contact
-Kieran Healy, `kjhealy@gmail.com`
+Kieran Healy, `@kjhealy`
