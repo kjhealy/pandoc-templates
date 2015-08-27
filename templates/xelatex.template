@@ -52,7 +52,7 @@ $endif$
 \chapterstyle{article-4} 
 \pagestyle{kjh}
 
-\published{$date$. Incomplete Draft. Please do not cite without permission.}
+\published{$date$.}
 
 $if(title)$
 \maketitle
