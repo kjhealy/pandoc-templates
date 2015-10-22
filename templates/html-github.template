@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html$if(lang)$ lang="$lang$"$endif$>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+$for(author-meta)$
+  <meta name="author" content="$author-meta$">
+$endfor$
+$if(date-meta)$
+  <meta name="dcterms.date" content="$date-meta$">
+$endif$
+  <title>$if(title-prefix)$$title-prefix$ - $endif$$pagetitle$</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+$if(quotes)$
+  <style type="text/css">q { quotes: "“" "”" "‘" "’"; }</style>
+$endif$
+$if(highlighting-css)$
+  <style type="text/css">
+$highlighting-css$
+  </style>
+$endif$
+$for(css)$
+  <link rel="stylesheet" href="$css$">
+$endfor$
+$if(math)$
+  $math$
+$endif$
+$for(header-includes)$
+  $header-includes$
+$endfor$
+</head>
+<body>
+<div id="wrapper">  
+$for(include-before)$
+$include-before$
+$endfor$
+$if(title)$
+<header>
+$if(date)$
+<h3 class="date">$date$</h3>
+$endif$
+
+<h1 class="title">$title$</h1>
+
+
+$for(author)$
+<h2 class="author">$author.name$</h2>
+<p class="affilation"><em>$author.affiliation$</em></p>
+$endfor$
+
+</header>
+$endif$
+$if(toc)$
+<nav id="$idprefix$TOC">
+$toc$
+</nav>
+$endif$
+
+$if(abstract)$
+
+<p class="small"><strong>Abstract: </strong><em>$abstract$</em></p>
+
+$endif$
+
+
+$body$
+</div>
+</body>
+</html>
