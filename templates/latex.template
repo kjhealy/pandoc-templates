@@ -43,6 +43,10 @@ $endif$
 
 \date{}
 
+$for(header-includes)$
+$header-includes$
+$endfor$
+
 \begin{document}  
 \setkeys{Gin}{width=1\textwidth} 	
 %\setromanfont[Mapping=tex-text,Numbers=OldStyle]{Minion Pro} 
