@@ -64,6 +64,7 @@ What's included?
   [socbibs](http://kjhealy.github.com/socbibs). You can of course
   change the bibliography and template files as desired.
 - The `pandoc` commands produced by the current version of the `Makefile` include switches that invoke two [pandoc filters](http://pandoc.org/scripting.html) that do additional processing on the bibliography and cross-references in the document. You should install [pandoc-crossref](https://github.com/lierdakil/pandoc-crossref) and [pandoc-citeproc-preamble](https://github.com/spwhitton/pandoc-citeproc-preamble) to make these work.
+- The [md-article-starter](https://github.com/kjhealy/md-starter) repository is a basic project folder you can clone that gives you a template for an article written in Markdown and a `Makefile` to produce `.html`, `.tex` or `.pdf` output from it. For R users there is an [rmd-article-starter](https://github.com/kjhealy/rmd-starter) as well, which begins with an `.Rmd` file.
 
 ## Contact
 Kieran Healy, `@kjhealy`
