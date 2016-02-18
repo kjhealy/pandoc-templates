@@ -26,16 +26,18 @@ What's included?
   pandoc as its custom processor. Go to Marked > Preferences >
   Behavior. Then specify the file Path to Pandoc like this (e.g.):
   `/usr/bin/pandoc` and the various switches and arguments to pandoc
-  in the 'Args' field below it, like this:
-    
+  in the 'Args' field below it, like this (but all on one line):
+
     ```
     -r markdown+simple_tables+table_captions+yaml_metadata_block -w html
     -s -S --template=/Users/kjhealy/.pandoc/templates/html.template
-    --filter pandoc-citeproc
+    --filter pandoc-crossref --filter pandoc-citeproc --filter pandoc-citeproc-preamble 
     --bibliography=/Users/kjhealy/Documents/bibs/socbib-pandoc.bib
     ```
-    
-    Then check the box telling Marked to use this by default.
+
+    Then check the box telling Marked to use this by default. Note
+    that you may have to specify the path to any pandoc filters you
+    use.
 - The CSS files can be added in Marked > Style > Custom CSS. Marked
   can then use them to format the HTML output.
 - In R, knitr's `knit()` function will turn `.Rmd` files into `.md`
