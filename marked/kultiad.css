@@ -41,11 +41,11 @@ body:after {
 }
 
 body {
-    padding-left: 6rem;
-    padding-right: 6rem;
+    padding-left: 4rem;
+    padding-right: 4rem;
     margin-left: auto;
     margin-right: auto;
-    max-width: 42rem;
+    max-width: 44rem;
     display: block;
 }
 
