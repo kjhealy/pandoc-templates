@@ -4,6 +4,10 @@
 
 $if(listings)$
 \usepackage{listings}
+\lstset{
+        basicstyle=\small\ttfamily,
+        frame=single,
+        float}
 $endif$
 $if(lhs)$
 \lstnewenvironment{code}{\lstset{language=r,basicstyle=\small\ttfamily}}{}
