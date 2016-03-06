@@ -77,7 +77,7 @@ $if(abstract)$
 
 \begin{abstract}
 
-\noindent \emph{Abstract:} $abstract$
+\vspace*{-0.75in}\noindent \emph{Abstract:} $abstract$
 
 \end{abstract}
 
