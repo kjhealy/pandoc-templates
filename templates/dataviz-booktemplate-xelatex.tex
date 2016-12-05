@@ -281,22 +281,44 @@ $endfor$
 % paste it.
 \setmonofont[Mapping=tex-text,Scale=0.8,Mapping=]{PragmataPro}
 
-$if(title)$
-\maketitle
-$endif$
-
 $if(cover-image)$
+
+\clearpage
+\thispagestyle{empty}
+
+% hack to make a blank page by inserting a space
+\ 
+
 
 \AddToShipoutPictureBG*{% Add picture to current page
   \AtStockLowerLeft{% Add picture to lower-left corner of paper stock
     \includegraphics[width=\paperwidth,height=\paperheight]{$cover-image$}}%
 }
 
+% http://tex.stackexchange.com/questions/24988/how-to-place-an-image-over-a-full-including-bleed-page-in-memoir
 % for memoir class use \stockwidth and \stockheight
 
-\clearpage
 % \bigskip
 % \begin{figure*}\includegraphics[width=1\linewidth]{$cover-image$}\end{figure*}
+
+\clearpage
+\newpage
+
+$if(title)$
+\maketitle
+$endif$
+
+$if(disclaimer)$
+\newpage
+\bigskip
+$disclaimer$
+\medskip
+This version compiled on \date.
+\newpage
+$endif$
+
+% Frontmatter begins here
+\frontmatter
 $endif$
 
 $if(abstract)$
