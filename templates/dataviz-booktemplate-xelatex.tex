@@ -125,7 +125,7 @@ $endif$
 
 %% -- tint overrides
 %% fonts, using roboto (condensed) as default
-%% \usepackage[sfdefault,condensed]{roboto}
+% \usepackage[sfdefault,condensed]{roboto}
 %% also nice: \usepackage[default]{lato}
 
 %% colored links, setting 'borrowed' from RJournal.sty with 'Thanks, Achim!'
@@ -266,6 +266,10 @@ $endif$
   
 \makeatother
 
+$if(smallverbatim)$
+\fvset{fontsize=$smallverbatim$}
+\RecustomVerbatimEnvironment{verbatim}{Verbatim}{}
+$endif$
 
 $for(header-includes)$
 $header-includes$
