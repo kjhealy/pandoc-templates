@@ -123,6 +123,19 @@ $else$
 \date{}
 $endif$
 
+% Fonts
+% Fira
+$if(usefira)$
+\usepackage[sfdefault,book]{FiraSans}
+\usepackage[scale=0.9]{FiraMono}
+
+% Set 11/13.5 spacing. (tufte-book class ignores fontsize in the class options) 
+\AtBeginDocument{%
+\fontsize{10}{12}\selectfont
+}
+
+$endif$
+
 %% -- tint overrides
 %% fonts, using roboto (condensed) as default
 % \usepackage[sfdefault,condensed]{roboto}
@@ -277,13 +290,13 @@ $endfor$
 
 \begin{document}
 
-\setromanfont[Mapping=tex-text]{Fira Sans} 
-\setsansfont[Mapping=tex-text]{Fira Sans}
+%\setromanfont[Mapping=tex-text]{Fira Sans Book} 
+%\setsansfont[Mapping=tex-text]{Fira Sans Book}
 % The Mapping= declaration on the next line is not an error. We're
 % clearing out the mapping for the monospace font, because otherwise
 % we'll get curly quotes in our code, and won't be able to copy and
 % paste it.
-\setmonofont[Mapping=tex-text,Scale=0.8,Mapping=]{Fira Code}
+%\setmonofont[Mapping=tex-text,Scale=0.8,Mapping=]{Fira Code}
 
 $if(cover-image)$
 
