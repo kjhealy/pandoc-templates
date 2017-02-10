@@ -136,6 +136,24 @@ $if(usefira)$
 
 $endif$
 
+
+% Minion
+$if(usealtfont)$
+
+% Altfont
+%\defaultfontfeatures{Scale=MatchLowercase}
+\setmainfont[Numbers=OldStyle]{Feijoa Medium}
+\setsansfont[Numbers={OldStyle,Proportional}]{Bitter Bold}
+\setmonofont[Numbers=OldStyle,Scale=MatchLowercase]{Fira Mono}
+
+% Set 11/13.5 spacing. (tufte-book class ignores fontsize in the class options) 
+\AtBeginDocument{%
+\fontsize{10}{12}\selectfont
+}
+
+$endif$
+
+
 %% -- tint overrides
 %% fonts, using roboto (condensed) as default
 % \usepackage[sfdefault,condensed]{roboto}
@@ -192,7 +210,7 @@ $endif$
 \titleformat{\chapter}%
   [display]% shape
   {\relax\ifthenelse{\NOT\boolean{@tufte@symmetric}}{\begin{fullwidth}}{}}% format applied to label+text
-  {\huge\thechapter}% label
+  {\huge\sffamily\thechapter}% label
   {0pt}% horizontal separation between label and title body
   {\huge\sffamily}% before the title body
   [\ifthenelse{\NOT\boolean{@tufte@symmetric}}{\end{fullwidth}}{}]% after the title body
@@ -202,7 +220,7 @@ $endif$
 \titleformat{\section}%
   [hang]% shape
   %{\normalfont\Large\itshape}% format applied to label+text
-  {\fontseries{b}\selectfont\Large}% format applied to label+text
+  {\fontseries{b}\selectfont\Large\sffamily}% format applied to label+text
   {\thesection}% label
   {1em}% horizontal separation between label and title body
   {}% before the title body
@@ -211,7 +229,7 @@ $endif$
 \titleformat{\subsection}%
   [hang]% shape
   %{\normalfont\large\itshape}% format applied to label+text
-  {\fontseries{m}\selectfont\large}% format applied to label+text
+  {\fontseries{m}\selectfont\large\sffamily}% format applied to label+text
   {\thesubsection}% label
   {1em}% horizontal separation between label and title body
   {}% before the title body
