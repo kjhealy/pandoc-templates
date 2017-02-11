@@ -136,15 +136,14 @@ $if(usefira)$
 
 $endif$
 
-
-% Minion
-$if(usealtfont)$
+% Alt
+$if(useminion)$
 
 % Altfont
 \defaultfontfeatures{Scale=MatchLowercase}
-\setmainfont{Feijoa Medium}
-\setsansfont[Numbers={OldStyle,Proportional}]{Bitter Bold}
-\setmonofont[Numbers=OldStyle,Scale=MatchLowercase]{Input Mono Condensed}
+\setmainfont[Numbers={OldStyle,Proportional}]{Minion Pro}
+\setsansfont[Numbers={OldStyle,Proportional}]{Myriad Pro Bold SemiCondensed}
+\setmonofont[Scale=MatchLowercase]{Input Mono Condensed}
 
 % Set 11/13.5 spacing. (tufte-book class ignores fontsize in the class options) 
 \AtBeginDocument{%
