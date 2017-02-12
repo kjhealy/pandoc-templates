@@ -172,7 +172,6 @@ $endif$
 %% macros
 \makeatletter
 
-%% -- tint does not use italics or allcaps in title
 \renewcommand{\maketitle}{%     
   \newpage
   \global\@topnum\z@% prevent floats from being placed at the top of the page
@@ -346,9 +345,15 @@ $if(disclaimer)$
 \newpage
 \bigskip
 $disclaimer$
-\medskip
-\newpage
 $endif$
+
+$if(cover-note)$
+\bigskip
+$cover-note$
+\medskip
+$endif$
+
+\newpage
 
 % Frontmatter begins here
 \frontmatter
