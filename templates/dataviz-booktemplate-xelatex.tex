@@ -145,9 +145,25 @@ $if(useminion)$
 \setsansfont[Numbers={OldStyle,Proportional}]{Myriad Pro Bold SemiCondensed}
 \setmonofont[Scale=MatchLowercase]{Input Mono Condensed}
 
+% Change running heads
+
+% Define a new pagestyle
+\newfontfamily{\runheadfont}{Myriad Pro Light SemiCondensed}
+\DeclareTextFontCommand{\textrunheadfont}{\runheadfont}
+
+
+\fancypagestyle{dataviz}{
+\fancyhf{}
+%\fancyhead[LE]{\runheadfont\thepage\quad{\newlinetospace{\plainauthor}}}
+%\fancyhead[RO]{\runheadfont\newlinetospace{\plaintitle}\quad\thepage}
+\fancyhead[RE,RO]{\runheadfont\newlinetospace{\plaintitle}\quad\thepage}
+}
+
+\pagestyle{dataviz}
+
 % Set 11/13.5 spacing. (tufte-book class ignores fontsize in the class options) 
 \AtBeginDocument{%
-\fontsize{10}{12}\selectfont
+\fontsize{11}{13.5}\selectfont
 }
 
 $endif$
@@ -292,7 +308,7 @@ $endif$
     [\end{fullwidth}] % after
 }{}
 
-  
+
 \makeatother
 
 $if(smallverbatim)$
@@ -353,7 +369,9 @@ $cover-note$
 \medskip
 $endif$
 
+\clearpage
 \newpage
+\pagestyle{dataviz}
 
 % Frontmatter begins here
 \frontmatter
