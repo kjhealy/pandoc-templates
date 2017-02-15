@@ -146,17 +146,19 @@ $if(useminion)$
 \setmonofont[Scale=MatchLowercase]{Input Mono Condensed}
 
 % Change running heads
-
+ 
 % Define a new pagestyle
 \newfontfamily{\runheadfont}{Myriad Pro Light SemiCondensed}
 \DeclareTextFontCommand{\textrunheadfont}{\runheadfont}
 
+\renewcommand{\chaptermark}[1]{\markboth{\thechapter.\ #1}{}}
+\renewcommand{\sectionmark}[1]{\markright{#1}}
 
 \fancypagestyle{dataviz}{
-\fancyhf{}
-%\fancyhead[LE]{\runheadfont\thepage\quad{\newlinetospace{\plainauthor}}}
-%\fancyhead[RO]{\runheadfont\newlinetospace{\plaintitle}\quad\thepage}
-\fancyhead[RE,RO]{\runheadfont\newlinetospace{\plaintitle}\quad\thepage}
+  \fancyhf{}
+  \fancyhead[LE]{\runheadfont\thepage\quad{\newlinetospace{\leftmark}}}
+  \fancyhead[RO]{\runheadfont\newlinetospace{\rightmark}\quad\thepage}
+%\fancyhead[RE,RO]{\runheadfont\newlinetospace{\plaintitle}\quad\thepage}
 }
 
 \pagestyle{dataviz}
