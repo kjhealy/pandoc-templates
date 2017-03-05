@@ -117,7 +117,7 @@ $endif$
 <body>
 
 <!--bookdown:toc:start-->
-  
+
 <nav class="pushy pushy-left"/>
     <ul>        
       <li ><a href="index.html">Home</a></li>
@@ -137,6 +137,7 @@ $endif$
 </nav>
 <div class="site-overlay"></div>
 
+
 <!--bookdown:toc:end-->
 
 $for(include-before)$
@@ -148,6 +149,10 @@ $endfor$
 <!--bookdown:title:start-->
 $if(title)$
 <div id="$idprefix$header">
+  $if(disclaimer)$
+  <p>$disclaimer$</p>
+  $endif$
+  
   $if(cover-image)$
   <p><span class="marginnote shownote">
       <img src="$cover-image$" alt="Cover" width="100%">
