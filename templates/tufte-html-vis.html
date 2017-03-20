@@ -142,14 +142,24 @@ $if(title)$
   $endif$
   
   $if(cover-image)$
-  <p><span class="marginnote shownote">
+  <p class="small"><span class="marginnote shownote">
       <img src="$cover-image$" alt="Cover" width="100%">
       $if(cover-note)$
+      <em>About the Cover Image: </em>
       $cover-note$
       $endif$ 
     </span>
   </p>
-  $endif$  
+  $endif$
+
+  $if(author-note)$
+  <p class="small"><span class="marginnote shownote">
+      <em>About the Author: </em>
+      $author-note$
+    </span>
+  </p>  
+  $endif$
+  
   <h1 class="title">$title$</h1>
   $if(subtitle)$
   <h3 class="subtitle">$subtitle$</h3>
