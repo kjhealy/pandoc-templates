@@ -8,6 +8,34 @@
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[$if(fontenc)$$fontenc$$else$T1$endif$]{fontenc}
   \usepackage[utf8]{inputenc}
+  
+  $if(useminion)$
+  \usepackage[fullfamily,opticals,footnotefigures]{MinionPro}
+  \usepackage[medfamily,footnotefigures]{MyriadPro}
+  \usepackage[scale=0.7]{inconsolata}
+  \usepackage{microtype}
+  \usepackage[toc,eqno,enum,bib,lineno]{tabfigures}
+
+  % Define a new pagestyle
+  \renewcommand{\chaptermark}[1]{\markboth{\thechapter.\ #1}{}}
+  \renewcommand{\sectionmark}[1]{\markright{#1}}
+
+  \fancypagestyle{dataviz}{
+    \fancyhf{}
+    \fancyhead[LE]{\sffamily\thepage\quad{\newlinetospace{\leftmark}}}
+    \fancyhead[RO]{\sffamily\newlinetospace{\rightmark}\quad\thepage}
+    % \fancyhead[RE,RO]{\runheadfont\newlinetospace{\plaintitle}\quad\thepage}
+  }
+
+  \pagestyle{dataviz}
+
+  % Set 11/13.5 spacing. (tufte-book class ignores fontsize in the class options) 
+  \AtBeginDocument{%
+    \fontsize{11}{13.5}\selectfont
+  }
+  
+  $endif$
+  
 $if(euro)$
   \usepackage{eurosym}
 $endif$
@@ -125,7 +153,7 @@ $endif$
 
 %% -- tint overrides
 %% fonts, using roboto (condensed) as default
-\usepackage[sfdefault,condensed]{roboto}
+% \usepackage[sfdefault,condensed]{roboto}
 %% also nice: \usepackage[default]{lato}
 
 %% colored links, setting 'borrowed' from RJournal.sty with 'Thanks, Achim!'
@@ -142,7 +170,6 @@ $endif$
 %% macros
 \makeatletter
 
-%% -- tint does not use italics or allcaps in title
 \renewcommand{\maketitle}{%     
   \newpage
   \global\@topnum\z@% prevent floats from being placed at the top of the page
@@ -156,7 +183,7 @@ $endif$
       %\gdef\@@title{\sffamily\LARGE\allcaps{\@title}\par}%
       %\gdef\@@author{\sffamily\Large\allcaps{\@author}\par}%
       %\gdef\@@date{\sffamily\Large\allcaps{\@date}\par}%
-      \gdef\@@title{\begingroup\fontseries{b}\selectfont\LARGE{\@title}\par}%
+      \gdef\@@title{\begingroup\fontseries{b}\selectfont\huge{\@title}\par}%
       \gdef\@@author{\begingroup\fontseries{l}\selectfont\Large{\@author}\par}%
       \gdef\@@date{\begingroup\fontseries{l}\selectfont\Large{\@date}\par}%
     }{%
@@ -179,7 +206,7 @@ $endif$
 \titleformat{\chapter}%
   [display]% shape
   {\relax\ifthenelse{\NOT\boolean{@tufte@symmetric}}{\begin{fullwidth}}{}}% format applied to label+text
-  {\huge\thechapter}% label
+  {\huge\sffamily\thechapter}% label
   {0pt}% horizontal separation between label and title body
   {\huge\sffamily}% before the title body
   [\ifthenelse{\NOT\boolean{@tufte@symmetric}}{\end{fullwidth}}{}]% after the title body
@@ -189,7 +216,7 @@ $endif$
 \titleformat{\section}%
   [hang]% shape
   %{\normalfont\Large\itshape}% format applied to label+text
-  {\fontseries{b}\selectfont\Large}% format applied to label+text
+  {\fontseries{b}\selectfont\Large\sffamily}% format applied to label+text
   {\thesection}% label
   {1em}% horizontal separation between label and title body
   {}% before the title body
@@ -198,7 +225,7 @@ $endif$
 \titleformat{\subsection}%
   [hang]% shape
   %{\normalfont\large\itshape}% format applied to label+text
-  {\fontseries{m}\selectfont\large}% format applied to label+text
+  {\fontseries{m}\selectfont\large\sffamily}% format applied to label+text
   {\thesubsection}% label
   {1em}% horizontal separation between label and title body
   {}% before the title body
@@ -228,7 +255,7 @@ $endif$
   \titlecontents{chapter}%
     [0em] % distance from left margin
     %{\vspace{1.5\baselineskip}\begin{fullwidth}\LARGE\rmfamily\itshape} % above (global formatting of entry)
-    {\vspace{1.5\baselineskip}\begin{fullwidth}\fontseries{m}\selectfont\LARGE} % above (global formatting of entry)
+    {\vspace{1.5\baselineskip}\begin{fullwidth}\fontseries{m}\selectfont\sffamily\LARGE} % above (global formatting of entry)
     {\hspace*{0em}\contentslabel{2em}} % before w/label (label = ``2'')
     {\hspace*{0em}} % before w/o label
     %{\rmfamily\upshape\qquad\thecontentspage} % filler + page (leaders and page num)
@@ -266,6 +293,10 @@ $endif$
   
 \makeatother
 
+$if(smallverbatim)$
+\fvset{fontsize=$smallverbatim$}
+\RecustomVerbatimEnvironment{verbatim}{Verbatim}{}
+$endif$
 
 $for(header-includes)$
 $header-includes$
@@ -273,22 +304,74 @@ $endfor$
 
 \begin{document}
 
-$if(title)$
-\maketitle
-$endif$
-
 $if(cover-image)$
+
+\clearpage
+\thispagestyle{empty}
+
+% hack to make a blank page by inserting a space
+\ 
+
 
 \AddToShipoutPictureBG*{% Add picture to current page
   \AtStockLowerLeft{% Add picture to lower-left corner of paper stock
     \includegraphics[width=\paperwidth,height=\paperheight]{$cover-image$}}%
 }
 
+% http://tex.stackexchange.com/questions/24988/how-to-place-an-image-over-a-full-including-bleed-page-in-memoir
 % for memoir class use \stockwidth and \stockheight
 
-\clearpage
 % \bigskip
 % \begin{figure*}\includegraphics[width=1\linewidth]{$cover-image$}\end{figure*}
+
+\clearpage
+\newpage
+
+$if(title)$
+\maketitle
+
+$if(disclaimer)$
+\vspace*{\fill}
+$disclaimer$
+\clearpage
+\newpage
+$endif$
+$endif$
+
+$if(cover-note)$
+\bigskip
+{\sffamily About the Cover} $cover-note$
+\medskip
+$endif$
+
+
+$if(author-note)$
+\bigskip
+{\sffamily About the Author} $author-note$
+\medskip
+$endif$
+
+$if(copyright-page)$
+\vspace*{\fill}
+
+\pagestyle{empty}
+%% copyrightpage
+\begingroup
+\footnotesize
+\parindent 0pt
+\parskip \baselineskip
+\textcopyright{} $if(copyright-year)$$copyright-year$$endif$ $if(author)$$for(author)$$author.name$$sep$ \and $endfor$$endif$ \  All rights reserved.
+\endgroup
+\clearpage
+\normalsize
+\newpage
+$endif$
+
+
+\pagestyle{dataviz}
+
+% Frontmatter begins here
+\frontmatter
 $endif$
 
 $if(abstract)$
@@ -336,6 +419,16 @@ $if(biblatex)$
 \printbibliography$if(biblio-title)$[title=$biblio-title$]$endif$
 
 $endif$
+
+$if(colophon-note)$
+\clearpage
+\newpage
+\bigskip
+\normalsize 
+{\sffamily Colophon} $colophon-note$
+\medskip
+$endif$
+
 
 $for(include-after)$
 $include-after$
