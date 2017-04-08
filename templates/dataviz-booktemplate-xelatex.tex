@@ -358,12 +358,13 @@ $if(cover-image)$
 
 $if(title)$
 \maketitle
-$endif$
 
 $if(disclaimer)$
-\newpage
-\bigskip
+\vspace*{\fill}
 $disclaimer$
+\clearpage
+\newpage
+$endif$
 $endif$
 
 $if(cover-note)$
@@ -379,9 +380,23 @@ $if(author-note)$
 \medskip
 $endif$
 
+$if(copyright-page)$
+\vspace*{\fill}
 
+\pagestyle{empty}
+%% copyrightpage
+\begingroup
+\footnotesize
+\parindent 0pt
+\parskip \baselineskip
+\textcopyright{} $if(copyright-year)$$copyright-year$$endif$ $if(author)$$for(author)$$author.name$$sep$ \and $endfor$$endif$ \  All rights reserved.
+\endgroup
 \clearpage
+\normalsize
 \newpage
+$endif$
+
+
 \pagestyle{dataviz}
 
 % Frontmatter begins here
@@ -433,6 +448,15 @@ $if(biblatex)$
 \printbibliography$if(biblio-title)$[title=$biblio-title$]$endif$
 
 $endif$
+
+$if(colophon-note)$
+\clearpage
+\newpage
+\bigskip
+{\sffamily Colophon} $colophon-note$
+\medskip
+$endif$
+
 
 $for(include-after)$
 $include-after$
