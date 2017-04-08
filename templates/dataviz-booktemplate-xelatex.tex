@@ -50,6 +50,9 @@ $endif$
 % full bleed cover image
 \usepackage{eso-pic}
 
+% microtype
+\usepackage{microtype}
+
 $if(lang)$
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[shorthands=off,$for(babel-otherlangs)$$babel-otherlangs$,$endfor$main=$babel-lang$]{babel}
@@ -453,6 +456,7 @@ $if(colophon-note)$
 \clearpage
 \newpage
 \bigskip
+\normalsize 
 {\sffamily Colophon} $colophon-note$
 \medskip
 $endif$
