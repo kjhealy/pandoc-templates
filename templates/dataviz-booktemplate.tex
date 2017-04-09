@@ -206,9 +206,9 @@ $endif$
 \titleformat{\chapter}%
   [display]% shape
   {\relax\ifthenelse{\NOT\boolean{@tufte@symmetric}}{\begin{fullwidth}}{}}% format applied to label+text
-  {\huge\sffamily\thechapter}% label
+  {\huge\sffamily\bfseries\thechapter}% label
   {0pt}% horizontal separation between label and title body
-  {\huge\sffamily}% before the title body
+  {\huge\sffamily\bfseries}% before the title body
   [\ifthenelse{\NOT\boolean{@tufte@symmetric}}{\end{fullwidth}}{}]% after the title body
 
 
@@ -216,7 +216,7 @@ $endif$
 \titleformat{\section}%
   [hang]% shape
   %{\normalfont\Large\itshape}% format applied to label+text
-  {\fontseries{b}\selectfont\Large\sffamily}% format applied to label+text
+  {\fontseries{b}\selectfont\Large\sffamily\bfseries}% format applied to label+text
   {\thesection}% label
   {1em}% horizontal separation between label and title body
   {}% before the title body
@@ -247,7 +247,7 @@ $endif$
   \titlecontents{part}% FIXME
     [0em] % distance from left margin
     %{\vspace{1.5\baselineskip}\begin{fullwidth}\LARGE\rmfamily\itshape} % above (global formatting of entry)
-    {\vspace{1.5\baselineskip}\begin{fullwidth}\fontseries{m}\selectfont\LARGE} % above (global formatting of entry)
+    {\vspace{1.5\baselineskip}\begin{fullwidth}\fontseries{m}\selectfont\LARGE\bfseries} % above (global formatting of entry)
     {\contentslabel{2em}} % before w/label (label = ``II'')
     {} % before w/o label
     {\rmfamily\upshape\qquad\thecontentspage} % filler + page (leaders and page num)
