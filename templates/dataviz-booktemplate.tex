@@ -198,7 +198,7 @@ $endif$
     \@@author
     \@@date
   \endgroup
-  \thispagestyle{plain}% suppress the running head
+  \thispagestyle{empty}% suppress the running head
   \tuftebreak% add some space before the text begins
   \@afterindentfalse\@afterheading% suppress indentation of the next paragraph
 }
@@ -250,16 +250,16 @@ $endif$
     {\vspace{1.5\baselineskip}\begin{fullwidth}\fontseries{m}\selectfont\LARGE\bfseries} % above (global formatting of entry)
     {\contentslabel{2em}} % before w/label (label = ``II'')
     {} % before w/o label
-    {\rmfamily\upshape\qquad\thecontentspage} % filler + page (leaders and page num)
+    {\sffamily\upshape\qquad\thecontentspage} % filler + page (leaders and page num)
     [\end{fullwidth}] % after
   \titlecontents{chapter}%
     [0em] % distance from left margin
     %{\vspace{1.5\baselineskip}\begin{fullwidth}\LARGE\rmfamily\itshape} % above (global formatting of entry)
-    {\vspace{1.5\baselineskip}\begin{fullwidth}\fontseries{m}\selectfont\sffamily\LARGE} % above (global formatting of entry)
+    {\vspace{1.5\baselineskip}\begin{fullwidth}\fontseries{m}\selectfont\sffamily\LARGE\bfseries} % above (global formatting of entry)
     {\hspace*{0em}\contentslabel{2em}} % before w/label (label = ``2'')
     {\hspace*{0em}} % before w/o label
     %{\rmfamily\upshape\qquad\thecontentspage} % filler + page (leaders and page num)
-    {\upshape\qquad\thecontentspage} % filler + page (leaders and page num)
+    {\sffamily\upshape\qquad\thecontentspage} % filler + page (leaders and page num)
     [\end{fullwidth}] % after
   \titlecontents{section}% FIXME
     [0em] % distance from left margin
@@ -282,7 +282,7 @@ $endif$
   \titlecontents{paragraph}% FIXME
     [0em] % distance from left margin
     %{\vspace{0\baselineskip}\begin{fullwidth}\normalsize\rmfamily\itshape} % above (global formatting of entry)
-    {\vspace{0\baselineskip}\begin{fullwidth}\fontseries{m}\selectfont\normalsize\rmfamily} % above (global formatting of entry)
+    {\vspace{0\baselineskip}\begin{fullwidth}\fontseries{m}\selectfont\normalsize} % above (global formatting of entry)
     {\hspace*{6em}\contentslabel{2em}} % before w/label (label = ``2.6.0.0.1'')
     {\hspace*{6em}} % before w/o label
     %{\rmfamily\upshape\qquad\thecontentspage} % filler + page (leaders and page num)
@@ -326,7 +326,7 @@ $if(cover-image)$
 
 \clearpage
 \newpage
-
+\thispagestyle{empty}
 $if(title)$
 \maketitle
 
@@ -335,26 +335,27 @@ $if(disclaimer)$
 $disclaimer$
 \clearpage
 \newpage
+\thispagestyle{empty}
 $endif$
 $endif$
 
 $if(cover-note)$
 \bigskip
-{\sffamily About the Cover} $cover-note$
+\noindent {\sffamily\bfseries About the Cover} $cover-note$
 \medskip
 $endif$
 
 
 $if(author-note)$
 \bigskip
-{\sffamily About the Author} $author-note$
+\noindent {\sffamily\bfseries About the Author} $author-note$
 \medskip
 $endif$
 
 $if(copyright-page)$
 \vspace*{\fill}
 
-\pagestyle{empty}
+\thispagestyle{empty}
 %% copyrightpage
 \begingroup
 \footnotesize
@@ -391,6 +392,7 @@ $if(colorlinks)$
 $endif$
 \setcounter{tocdepth}{$toc-depth$}
 \tableofcontents
+\thispagestyle{dataviz}
 }
 $endif$
 $if(lot)$
@@ -425,7 +427,7 @@ $if(colophon-note)$
 \newpage
 \bigskip
 \normalsize 
-{\sffamily Colophon} $colophon-note$
+\noindent {\sffamily\bfseries Colophon} $colophon-note$
 \medskip
 $endif$
 
