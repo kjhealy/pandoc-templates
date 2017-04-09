@@ -372,14 +372,18 @@ $endif$
 
 $if(cover-note)$
 \bigskip
-\noindent {\sffamily About the Cover} $cover-note$
+\noindent {\sffamily About the Cover}
+\smallskip
+$cover-note$
 \medskip
 $endif$
 
 
 $if(author-note)$
 \bigskip
-\noindent {\sffamily About the Author} $author-note$
+\noindent {\sffamily About the Author}
+\smallskip
+$author-note$
 \medskip
 $endif$
 
@@ -453,13 +457,15 @@ $if(biblatex)$
 
 $endif$
 
+
 $if(colophon-note)$
 \clearpage
 \newpage
 \bigskip
-\normalsize 
-\noindent {\sffamily Colophon} $colophon-note$
-\medskip
+\normalsize
+\noindent {\sffamily\bfseries Colophon} \\
+\smallskip
+$colophon-note$
 $endif$
 
 

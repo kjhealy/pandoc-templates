@@ -341,14 +341,18 @@ $endif$
 
 $if(cover-note)$
 \bigskip
-\noindent {\sffamily\bfseries About the Cover} $cover-note$
+\noindent {\sffamily\bfseries About the Cover} \\
+\smallskip
+$cover-note$
 \medskip
 $endif$
 
 
 $if(author-note)$
 \bigskip
-\noindent {\sffamily\bfseries About the Author} $author-note$
+\noindent {\sffamily\bfseries About the Author} \\
+\smallskip
+$author-note$
 \medskip
 $endif$
 
@@ -426,11 +430,11 @@ $if(colophon-note)$
 \clearpage
 \newpage
 \bigskip
-\normalsize 
-\noindent {\sffamily\bfseries Colophon} $colophon-note$
-\medskip
+\normalsize
+\noindent {\sffamily\bfseries Colophon} \\
+\smallskip
+$colophon-note$
 $endif$
-
 
 $for(include-after)$
 $include-after$
