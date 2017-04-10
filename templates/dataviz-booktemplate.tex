@@ -36,8 +36,8 @@
 
   \fancypagestyle{plain}{
     \fancyhf{}
-    \fancyhead[LE]{\sffamily\thepage\quad{\newlinetospace{\nouppercase \leftmark}}}
-    \fancyhead[RO]{\sffamily\newlinetospace{\nouppercase \rightmark}\quad\thepage}
+    \fancyhead[LE]{\sffamily\thepage}
+    \fancyhead[RO]{\sffamily\quad\thepage}
     % \fancyhead[RE,RO]{\runheadfont\newlinetospace{\plaintitle}\quad\thepage}
   }
 
@@ -420,6 +420,9 @@ $endif$
 $if(lof)$
 \listoffigures
 $endif$
+
+% Main matter starts here
+\mainmatter
 
 $body$
 
