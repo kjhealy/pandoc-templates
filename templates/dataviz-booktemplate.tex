@@ -3,6 +3,11 @@
 % ams
 \usepackage{amssymb,amsmath}
 
+% tools
+% tools
+\usepackage{etoolbox}
+\usepackage{fancyhdr}
+
 \usepackage{ifxetex,ifluatex}
 \usepackage{fixltx2e} % provides \textsubscript
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
@@ -17,9 +22,11 @@
   \usepackage[toc,eqno,enum,bib,lineno]{tabfigures}
 
   % Define a new pagestyle
+  \makeatletter
   \renewcommand{\chaptermark}[1]{\markboth{\thechapter.\ #1}{}}
   \renewcommand{\sectionmark}[1]{\markright{#1}}
-
+  \makeatother
+  
   \fancypagestyle{dataviz}{
     \fancyhf{}
     \fancyhead[LE]{\sffamily\thepage\quad{\newlinetospace{\leftmark}}}
@@ -27,7 +34,16 @@
     % \fancyhead[RE,RO]{\runheadfont\newlinetospace{\plaintitle}\quad\thepage}
   }
 
-  \pagestyle{dataviz}
+  \fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyhead[LE]{\sffamily\thepage\quad{\newlinetospace{\nouppercase \leftmark}}}
+    \fancyhead[RO]{\sffamily\newlinetospace{\nouppercase \rightmark}\quad\thepage}
+    % \fancyhead[RE,RO]{\runheadfont\newlinetospace{\plaintitle}\quad\thepage}
+  }
+
+
+\appto\frontmatter{\pagestyle{plain}}
+\appto\mainmatter{\pagestyle{dataviz}}
 
   % Set 11/13.5 spacing. (tufte-book class ignores fontsize in the class options) 
   \AtBeginDocument{%
@@ -396,7 +412,6 @@ $if(colorlinks)$
 $endif$
 \setcounter{tocdepth}{$toc-depth$}
 \tableofcontents
-\thispagestyle{dataviz}
 }
 $endif$
 $if(lot)$
