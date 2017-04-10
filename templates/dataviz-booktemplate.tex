@@ -10,6 +10,8 @@
 
 \usepackage{ifxetex,ifluatex}
 \usepackage{fixltx2e} % provides \textsubscript
+
+%% If Using PDFTEX
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[$if(fontenc)$$fontenc$$else$T1$endif$]{fontenc}
   \usepackage[utf8]{inputenc}
@@ -93,6 +95,9 @@ $endif$
 
 % full bleed cover image
 \usepackage{eso-pic}
+
+% microtype
+\usepackage{microtype}
 
 $if(lang)$
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex

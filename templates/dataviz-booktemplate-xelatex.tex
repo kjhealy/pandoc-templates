@@ -3,31 +3,129 @@
 % ams
 \usepackage{amssymb,amsmath}
 
+% tools
+% tools
+\usepackage{etoolbox}
+\usepackage{fancyhdr}
+
 \usepackage{ifxetex,ifluatex}
 \usepackage{fixltx2e} % provides \textsubscript
-\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
-  \usepackage[$if(fontenc)$$fontenc$$else$T1$endif$]{fontenc}
-  \usepackage[utf8]{inputenc}
-$if(euro)$
-  \usepackage{eurosym}
-$endif$
-\else % if luatex or xelatex
-  \makeatletter
-  \@ifpackageloaded{fontspec}{}{\usepackage{fontspec}}
-  \makeatother
-  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
-  \makeatletter
-  \@ifpackageloaded{soul}{
-     \renewcommand\allcapsspacing[1]{{\addfontfeature{LetterSpace=15}#1}}
-     \renewcommand\smallcapsspacing[1]{{\addfontfeature{LetterSpace=10}#1}}
-   }{}
-  \makeatother
-$if(euro)$
-  \newcommand{\euro}{€}
-$endif$
-\fi
 
-% graphix
+% microtype
+\usepackage{microtype}
+
+% Define a new pagestyle
+\makeatletter
+\renewcommand{\chaptermark}[1]{\markboth{\thechapter.\ #1}{}}
+\renewcommand{\sectionmark}[1]{\markright{#1}}
+\makeatother
+
+\fancypagestyle{dataviz}{
+  \fancyhf{}
+  \fancyhead[LE]{\sffamily\thepage\quad{\newlinetospace{\leftmark}}}
+  \fancyhead[RO]{\sffamily\newlinetospace{\rightmark}\quad\thepage}
+  % \fancyhead[RE,RO]{\runheadfont\newlinetospace{\plaintitle}\quad\thepage}
+}
+
+\fancypagestyle{plain}{
+  \fancyhf{}
+  \fancyhead[LE]{\sffamily\thepage}
+  \fancyhead[RO]{\sffamily\quad\thepage}
+  % \fancyhead[RE,RO]{\runheadfont\newlinetospace{\plaintitle}\quad\thepage}
+}
+
+
+\appto\frontmatter{\pagestyle{plain}}
+\appto\mainmatter{\pagestyle{dataviz}}
+
+%% If Using PDFTEX
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+\usepackage[$if(fontenc)$$fontenc$$else$T1$endif$]{fontenc}
+\usepackage[utf8]{inputenc}
+
+$if(useminion)$
+\usepackage[fullfamily,opticals,footnotefigures]{MinionPro}
+\usepackage[medfamily,footnotefigures]{MyriadPro}
+\usepackage[scale=0.9]{inconsolata}
+\usepackage[toc,eqno,enum,bib,lineno]{tabfigures}
+
+% Set 11/13.5 spacing. (tufte-book class ignores fontsize in the class options) 
+\AtBeginDocument{%
+  \fontsize{11}{13.5}\selectfont
+}
+
+$endif$
+
+$if(euro)$
+\usepackage{eurosym}
+$endif$
+
+\else % if luatex or xelatex
+\makeatletter
+\@ifpackageloaded{fontspec}{}{\usepackage{fontspec}}
+\makeatother
+\defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\makeatletter
+\@ifpackageloaded{soul}{
+  \renewcommand\allcapsspacing[1]{{\addfontfeature{LetterSpace=15}#1}}
+  \renewcommand\smallcapsspacing[1]{{\addfontfeature{LetterSpace=10}#1}}
+}{}
+\makeatother
+$if(euro)$
+\newcommand{\euro}{€}
+$endif$
+
+% Fonts
+% Fira
+$if(usefira)$
+\usepackage[sfdefault,book]{FiraSans}
+\usepackage[scale=0.9]{FiraMono}
+
+% Set 11/13.5 spacing. (tufte-book class ignores fontsize in the class options) 
+\AtBeginDocument{%
+  \fontsize{10}{12}\selectfont
+}
+
+$endif$
+
+% Alt
+$if(useminion)$
+
+% Altfont
+\defaultfontfeatures{Scale=MatchLowercase}
+\setmainfont[Numbers={OldStyle,Proportional}]{Minion Pro}
+\setsansfont[Numbers={OldStyle,Proportional}]{Myriad Pro SemiCondensed}
+% \setmonofont[Scale=MatchLowercase]{PragmataPro}
+\setmonofont[Scale=MatchLowercase]{Iosevka Type Light}
+
+% Change running heads
+
+% Define a new pagestyle
+\newfontfamily{\runheadfont}{Myriad Pro Light SemiCondensed}
+\DeclareTextFontCommand{\textrunheadfont}{\runheadfont}
+
+\renewcommand{\chaptermark}[1]{\markboth{\thechapter.\ #1}{}}
+\renewcommand{\sectionmark}[1]{\markright{#1}}
+
+\fancypagestyle{dataviz}{
+  \fancyhf{}
+  \fancyhead[LE]{\runheadfont\thepage\quad{\newlinetospace{\leftmark}}}
+  \fancyhead[RO]{\runheadfont\newlinetospace{\rightmark}\quad\thepage}
+  % \fancyhead[RE,RO]{\runheadfont\newlinetospace{\plaintitle}\quad\thepage}
+}
+
+\pagestyle{dataviz}
+
+% Set 11/13.5 spacing. (tufte-book class ignores fontsize in the class options) 
+\AtBeginDocument{%
+  \fontsize{12}{14}\selectfont
+}
+
+$endif$
+
+\fi % end pdflatex vs xelatex choices
+
+% graphicx
 \usepackage{graphicx}
 \setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio}
 
@@ -50,8 +148,6 @@ $endif$
 % full bleed cover image
 \usepackage{eso-pic}
 
-% microtype
-\usepackage{microtype}
 
 $if(lang)$
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
@@ -126,55 +222,6 @@ $else$
 \date{}
 $endif$
 
-% Fonts
-% Fira
-$if(usefira)$
-\usepackage[sfdefault,book]{FiraSans}
-\usepackage[scale=0.9]{FiraMono}
-
-% Set 11/13.5 spacing. (tufte-book class ignores fontsize in the class options) 
-\AtBeginDocument{%
-\fontsize{10}{12}\selectfont
-}
-
-$endif$
-
-% Alt
-$if(useminion)$
-
-% Altfont
-\defaultfontfeatures{Scale=MatchLowercase}
-\setmainfont[Numbers={OldStyle,Proportional}]{Minion Pro}
-\setsansfont[Numbers={OldStyle,Proportional}]{Myriad Pro Bold SemiCondensed}
-%\setmonofont[Scale=MatchLowercase]{PragmataPro}
-\setmonofont[Scale=MatchLowercase]{Iosevka Type Light}
-
-% Change running heads
- 
-% Define a new pagestyle
-\newfontfamily{\runheadfont}{Myriad Pro Light SemiCondensed}
-\DeclareTextFontCommand{\textrunheadfont}{\runheadfont}
-
-\renewcommand{\chaptermark}[1]{\markboth{\thechapter.\ #1}{}}
-\renewcommand{\sectionmark}[1]{\markright{#1}}
-
-\fancypagestyle{dataviz}{
-  \fancyhf{}
-  \fancyhead[LE]{\runheadfont\thepage\quad{\newlinetospace{\leftmark}}}
-  \fancyhead[RO]{\runheadfont\newlinetospace{\rightmark}\quad\thepage}
-%\fancyhead[RE,RO]{\runheadfont\newlinetospace{\plaintitle}\quad\thepage}
-}
-
-\pagestyle{dataviz}
-
-% Set 11/13.5 spacing. (tufte-book class ignores fontsize in the class options) 
-\AtBeginDocument{%
-\fontsize{12}{14}\selectfont
-}
-
-$endif$
-
-
 %% -- tint overrides
 %% fonts, using roboto (condensed) as default
 % \usepackage[sfdefault,condensed]{roboto}
@@ -230,9 +277,9 @@ $endif$
 \titleformat{\chapter}%
   [display]% shape
   {\relax\ifthenelse{\NOT\boolean{@tufte@symmetric}}{\begin{fullwidth}}{}}% format applied to label+text
-  {\huge\sffamily\thechapter}% label
+  {\huge\sffamily\bfseries\thechapter}% label
   {0pt}% horizontal separation between label and title body
-  {\huge\sffamily}% before the title body
+  {\huge\sffamily\bfseries}% before the title body
   [\ifthenelse{\NOT\boolean{@tufte@symmetric}}{\end{fullwidth}}{}]% after the title body
 
 
@@ -240,7 +287,7 @@ $endif$
 \titleformat{\section}%
   [hang]% shape
   %{\normalfont\Large\itshape}% format applied to label+text
-  {\fontseries{b}\selectfont\Large\sffamily}% format applied to label+text
+  {\fontseries{b}\selectfont\Large\sffamily\bfseries}% format applied to label+text
   {\thesection}% label
   {1em}% horizontal separation between label and title body
   {}% before the title body
@@ -271,7 +318,7 @@ $endif$
   \titlecontents{part}% FIXME
     [0em] % distance from left margin
     %{\vspace{1.5\baselineskip}\begin{fullwidth}\LARGE\rmfamily\itshape} % above (global formatting of entry)
-    {\vspace{1.5\baselineskip}\begin{fullwidth}\fontseries{m}\selectfont\LARGE} % above (global formatting of entry)
+    {\vspace{1.5\baselineskip}\begin{fullwidth}\fontseries{m}\selectfont\LARGE\bfseries} % above (global formatting of entry)
     {\contentslabel{2em}} % before w/label (label = ``II'')
     {} % before w/o label
     {\sffamily\upshape\qquad\thecontentspage} % filler + page (leaders and page num)
@@ -279,11 +326,11 @@ $endif$
   \titlecontents{chapter}%
     [0em] % distance from left margin
     %{\vspace{1.5\baselineskip}\begin{fullwidth}\LARGE\rmfamily\itshape} % above (global formatting of entry)
-    {\vspace{1.5\baselineskip}\begin{fullwidth}\fontseries{m}\selectfont\sffamily\LARGE} % above (global formatting of entry)
+    {\vspace{1.5\baselineskip}\begin{fullwidth}\fontseries{m}\selectfont\sffamily\LARGE\bfseries} % above (global formatting of entry)
     {\hspace*{0em}\contentslabel{2em}} % before w/label (label = ``2'')
     {\hspace*{0em}} % before w/o label
     %{\rmfamily\upshape\qquad\thecontentspage} % filler + page (leaders and page num)
-    {\upshape\qquad\thecontentspage} % filler + page (leaders and page num)
+    {\sffamily\upshape\qquad\thecontentspage} % filler + page (leaders and page num)
     [\end{fullwidth}] % after
   \titlecontents{section}% FIXME
     [0em] % distance from left margin
@@ -306,7 +353,7 @@ $endif$
   \titlecontents{paragraph}% FIXME
     [0em] % distance from left margin
     %{\vspace{0\baselineskip}\begin{fullwidth}\normalsize\rmfamily\itshape} % above (global formatting of entry)
-    {\vspace{0\baselineskip}\begin{fullwidth}\fontseries{m}\selectfont\normalsize\rmfamily} % above (global formatting of entry)
+    {\vspace{0\baselineskip}\begin{fullwidth}\fontseries{m}\selectfont\normalsize} % above (global formatting of entry)
     {\hspace*{6em}\contentslabel{2em}} % before w/label (label = ``2.6.0.0.1'')
     {\hspace*{6em}} % before w/o label
     %{\rmfamily\upshape\qquad\thecontentspage} % filler + page (leaders and page num)
@@ -327,14 +374,6 @@ $header-includes$
 $endfor$
 
 \begin{document}
-
-%\setromanfont[Mapping=tex-text]{Fira Sans Book} 
-%\setsansfont[Mapping=tex-text]{Fira Sans Book}
-% The Mapping= declaration on the next line is not an error. We're
-% clearing out the mapping for the monospace font, because otherwise
-% we'll get curly quotes in our code, and won't be able to copy and
-% paste it.
-%\setmonofont[Mapping=tex-text,Scale=0.8,Mapping=]{Fira Code}
 
 $if(cover-image)$
 
@@ -358,7 +397,7 @@ $if(cover-image)$
 
 \clearpage
 \newpage
-
+\thispagestyle{empty}
 $if(title)$
 \maketitle
 
@@ -367,12 +406,13 @@ $if(disclaimer)$
 $disclaimer$
 \clearpage
 \newpage
+\thispagestyle{empty}
 $endif$
 $endif$
 
 $if(cover-note)$
 \bigskip
-\noindent {\sffamily About the Cover}
+\noindent {\sffamily\bfseries About the Cover} \\
 \smallskip
 $cover-note$
 \medskip
@@ -381,7 +421,7 @@ $endif$
 
 $if(author-note)$
 \bigskip
-\noindent {\sffamily About the Author}
+\noindent {\sffamily\bfseries About the Author} \\
 \smallskip
 $author-note$
 \medskip
@@ -427,7 +467,6 @@ $if(colorlinks)$
 $endif$
 \setcounter{tocdepth}{$toc-depth$}
 \tableofcontents
-\thispagestyle{dataviz}
 }
 $endif$
 $if(lot)$
@@ -436,6 +475,10 @@ $endif$
 $if(lof)$
 \listoffigures
 $endif$
+
+% Main matter starts here
+% \mainmatter
+% For this template \mainmatter defined in the text, after the Preface
 
 $body$
 
@@ -457,17 +500,15 @@ $if(biblatex)$
 
 $endif$
 
-
 $if(colophon-note)$
 \clearpage
 \newpage
-\thispagestyle{empty}
 \normalsize
+\thispagestyle{empty}
 \noindent {\sffamily\bfseries Colophon} \\
 \smallskip
 $colophon-note$
 $endif$
-
 
 $for(include-after)$
 $include-after$
