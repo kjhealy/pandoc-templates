@@ -11,9 +11,6 @@
 \usepackage{ifxetex,ifluatex}
 \usepackage{fixltx2e} % provides \textsubscript
 
-% microtype
-\usepackage{microtype}
-
 % Define a new pagestyle
 \makeatletter
 \renewcommand{\chaptermark}[1]{\markboth{\thechapter.\ #1}{}}
@@ -38,12 +35,16 @@
 \appto\frontmatter{\pagestyle{plain}}
 \appto\mainmatter{\pagestyle{dataviz}}
 
-%% If Using PDFTEX
+$if(useminion)$
+
+%% if using pdflatex
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
 \usepackage[$if(fontenc)$$fontenc$$else$T1$endif$]{fontenc}
 \usepackage[utf8]{inputenc}
 
-$if(useminion)$
+% microtype
+\usepackage{microtype}
+
 \usepackage[fullfamily,opticals,footnotefigures]{MinionPro}
 \usepackage[medfamily,footnotefigures]{MyriadPro}
 \usepackage[scale=0.9]{inconsolata}
@@ -54,13 +55,9 @@ $if(useminion)$
   \fontsize{11}{13.5}\selectfont
 }
 
-$endif$
-
-$if(euro)$
-\usepackage{eurosym}
-$endif$
-
+%% xelatex minion
 \else % if luatex or xelatex
+
 \makeatletter
 \@ifpackageloaded{fontspec}{}{\usepackage{fontspec}}
 \makeatother
@@ -71,25 +68,10 @@ $endif$
   \renewcommand\smallcapsspacing[1]{{\addfontfeature{LetterSpace=10}#1}}
 }{}
 \makeatother
-$if(euro)$
-\newcommand{\euro}{€}
-$endif$
 
-% Fonts
-% Fira
-$if(usefira)$
-\usepackage[sfdefault,book]{FiraSans}
-\usepackage[scale=0.9]{FiraMono}
 
-% Set 11/13.5 spacing. (tufte-book class ignores fontsize in the class options) 
-\AtBeginDocument{%
-  \fontsize{10}{12}\selectfont
-}
-
-$endif$
-
-% Alt
-$if(useminion)$
+%microtype
+\usepackage{microtype}
 
 % Altfont
 \defaultfontfeatures{Scale=MatchLowercase}
@@ -121,9 +103,111 @@ $if(useminion)$
   \fontsize{12}{14}\selectfont
 }
 
+\fi % end pdflatex vs xelatex choices for minion
+
 $endif$
 
-\fi % end pdflatex vs xelatex choices
+$if(usecharter)$
+
+% charter setup is for pdflatex only
+\usepackage[$if(fontenc)$$fontenc$$else$T1$endif$]{fontenc}
+\usepackage[utf8]{inputenc}
+ \usepackage[charter]{mathdesign}
+ \def\rmdefault{bch} % not scaled
+ \def\sfdefault{SourceSansPro-TLF}
+ \def\SourceSansPro@scale{1.02}
+% \def\ttdefault{blg}
+% {\ttfamily\selectfont
+%   \DeclareFontShape{T1}{blg}{k}{n}{<-> ssub * blg/b/n}{}}
+%   \usepackage{ulgothic}
+ \usepackage[scale=0.85]{inconsolata}
+ \usepackage{textcomp}
+
+ 
+\usepackage[expansion=false,kerning=true]{microtype}[\filedate]
+ \DeclareMicrotypeSet*[protrusion]
+      { doc }
+      { encoding = {*, TS1, OMS},
+        family   = {rm*, tt*},
+        size     = {footnotesize, small, normalsize} }
+ \SetProtrusion
+      { encoding = OMS,
+        family   = mdbch }
+      { "68 = {400, },  % \langle
+        "69 = { ,400} } % \rangle
+ \DeclareMicrotypeSet*[kerning]
+      { doc }
+      { encoding = T1,
+        family   = blg, % typewriter font and ...
+        font     = * }  % French sample in section \ref{sub:kerning}
+ \SetExtraKerning
+      { encoding = T1,
+        family   = blg }
+      { _ = {100,100} } % underscores shouldn't touch
+ \ifxetex\else
+ % disable ?` and !` ligatures (sample in section \ref{sec:disable-ligatures})
+ \DisableLigatures[?,!]{encoding = *, family = rm* }
+ \fi
+ % Fraktur sample in section \ref{sec:lettersp}
+ \IfFileExists{t1mwr.fd}
+   {\def\textfrak##1{{\fontfamily{mwr}\selectfont ##1}}
+    \ifpdf
+      \SetTracking[no ligatures={f,s,c}]{encoding=T1,family=mwr}{120}
+    \fi}
+   {\IfFileExists{yfonts.sty}
+     {\usepackage{yfonts}
+      \ifpdf
+        \SetTracking[no ligatures={f,s,c}]{encoding=LY,family=yfrak}{120}
+      \fi}
+     {\def\textfrak{\rule{.5em}{1.5ex}\@gobble}}}
+\tolerance=700
+\ifpdf
+  \ifluatex % microtype.dtx finally compiles with 0.35!
+    \microtypesetup{kerning=false}
+    \def\pdftexversion{200} % in TeX Live 2015, they let this to \luatexversion
+  \fi
+  \ifnum\pdftexversion<140 \else % pdftex 1.40, including textmatrix patch,
+    \microtypesetup{expansion=alltext,step=1} % hence we can activate expansion ...
+    \tolerance=300         % ... and make TeX almost as intolerant as it normally is
+ %   \g@addto@macro\macrocode{\microtypesetup{expansion=false}}
+    \pdfminorversion=5 % for the OCGs (default since TeX Live 2010)
+  \fi
+  % bonus material
+  \InputIfFileExists{microtype-logo.dtx}\relax\relax
+  \InputIfFileExists{microtype-lssample.dtx}\relax\relax
+\else
+  \let\lsstyle\relax
+\fi
+\ifxetex
+  \microtypesetup{kerning=false}
+\fi
+
+$endif$
+
+
+$if(euro)$
+\usepackage{eurosym}
+$endif$
+
+
+$if(euro)$
+\newcommand{\euro}{€}
+$endif$
+
+% Fira
+$if(usefira)$
+% microtype
+\usepackage{microtype}
+
+\usepackage[sfdefault,book]{FiraSans}
+\usepackage[scale=0.9]{FiraMono}
+
+% Set 11/13.5 spacing. (tufte-book class ignores fontsize in the class options) 
+\AtBeginDocument{%
+  \fontsize{10}{12}\selectfont
+}
+
+$endif$
 
 % graphicx
 \usepackage{graphicx}
