@@ -270,6 +270,10 @@ $endif$
 % pandoc syntax highlighting
 $if(highlighting-macros)$
 $highlighting-macros$
+
+% Choose size of code blocks without shrinking inline code.
+\renewenvironment{Shaded} {\begin{snugshade}\normalsize} {\end{snugshade}}
+
 $endif$
 
 % longtable
@@ -450,6 +454,7 @@ $endif$
 \makeatother
 
 $if(smallverbatim)$
+\usepackage{fancyvrb}
 \fvset{fontsize=$smallverbatim$}
 \RecustomVerbatimEnvironment{verbatim}{Verbatim}{}
 $endif$
@@ -567,6 +572,9 @@ $endif$
 
 $body$
 
+\backmatter
+\twocolumn
+
 $if(natbib)$
 $if(bibliography)$
 $if(biblio-title)$
@@ -582,15 +590,17 @@ $endif$
 $endif$
 $if(biblatex)$
 \printbibliography$if(biblio-title)$[title=$biblio-title$]$endif$
-
 $endif$
+
+
 
 $if(colophon-note)$
 \clearpage
 \newpage
+\onecolumn
 \normalsize
 \thispagestyle{empty}
-\noindent {\sffamily\bfseries Colophon} \\
+{\sffamily\bfseries Colophon} \\
 \smallskip
 $colophon-note$
 $endif$
