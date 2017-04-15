@@ -251,7 +251,8 @@ $endfor$
 $endif$
 
 $if(numbersections)$
-\setcounter{secnumdepth}{2}
+% Control depth of chapter/section numbering
+\setcounter{secnumdepth}{$if(secnumdepth)$$secnumdepth$$else$2$endif$}
 $else$
 \setcounter{secnumdepth}{-1}
 $endif$
