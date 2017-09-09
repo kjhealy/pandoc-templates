@@ -284,6 +284,18 @@ $if(tables)$
 \usepackage{longtable,booktabs}
 $endif$
 
+% listings
+$if(listings)$
+\usepackage{fancyvrb}
+\usepackage{listings}
+\lstset{frame=single, columns=fixed, basicstyle=\footnotesize\ttfamily, keepspaces=true, showstringspaces=false, numbers=none, framesep=10pt, xleftmargin=10pt,xrightmargin=10pt}
+$endif$
+
+% pandoc-crossref
+$if(pandoc-crossref)$
+\usepackage{cleveref}
+$endif$
+
 % multiplecol
 \usepackage{multicol}
 
