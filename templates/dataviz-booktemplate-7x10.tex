@@ -1,0 +1,722 @@
+\documentclass[$if(fontsize)$$fontsize$,$endif$$if(lang)$$lang$,$endif$$for(classoption)$$classoption$$sep$,$endfor$]{$documentclass$}
+
+%% Geometry
+
+\makeatletter
+% Patch to ignore warnings
+\Gm@hbodyfalse
+\Gm@vbodyfalse
+\makeatother
+
+%% Force executive paper (US 7in x 10in) layout
+\geometry{
+  paperwidth=177.8mm,
+  paperheight=254mm,
+  left=15.51mm,
+  top=14.65mm,
+  textwidth=103.71mm,
+  marginparsep=7.40mm,
+  marginparwidth=37.03mm,
+  includehead}
+
+% ams
+\usepackage{amssymb,amsmath}
+
+% tools
+% tools
+\usepackage{etoolbox}
+\usepackage{fancyhdr}
+
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+
+% Define a new pagestyle
+\makeatletter
+\renewcommand{\chaptermark}[1]{\markboth{\thechapter.\ #1}{}}
+\renewcommand{\sectionmark}[1]{\markright{#1}}
+\makeatother
+
+\fancypagestyle{dataviz}{
+  \fancyhf{}
+  \fancyhead[LE]{\sffamily\thepage\quad{\newlinetospace{\leftmark}}}
+  \fancyhead[RO]{\sffamily\newlinetospace{\rightmark}\quad\thepage}
+  % \fancyhead[RE,RO]{\runheadfont\newlinetospace{\plaintitle}\quad\thepage}
+}
+
+\fancypagestyle{plain}{
+  \fancyhf{}
+  \fancyhead[LE]{\sffamily\thepage}
+  \fancyhead[RO]{\sffamily\quad\thepage}
+  % \fancyhead[RE,RO]{\runheadfont\newlinetospace{\plaintitle}\quad\thepage}
+}
+
+
+\appto\frontmatter{\pagestyle{plain}}
+\appto\mainmatter{\pagestyle{dataviz}}
+
+$if(useminion)$
+
+%% if using pdflatex
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+\usepackage[$if(fontenc)$$fontenc$$else$T1$endif$]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% microtype
+\usepackage{microtype}
+
+\usepackage[fullfamily,opticals,footnotefigures]{MinionPro}
+\usepackage[medfamily,footnotefigures]{MyriadPro}
+\usepackage[scale=0.9]{inconsolata}
+\usepackage[toc,eqno,enum,bib,lineno]{tabfigures}
+
+% Set 11/13.5 spacing. (tufte-book class ignores fontsize in the class options) 
+\AtBeginDocument{%
+  \fontsize{11}{13.5}\selectfont
+}
+
+%% xelatex minion
+\else % if luatex or xelatex
+
+\makeatletter
+\@ifpackageloaded{fontspec}{}{\usepackage{fontspec}}
+\makeatother
+\defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\makeatletter
+\@ifpackageloaded{soul}{
+  \renewcommand\allcapsspacing[1]{{\addfontfeature{LetterSpace=15}#1}}
+  \renewcommand\smallcapsspacing[1]{{\addfontfeature{LetterSpace=10}#1}}
+}{}
+\makeatother
+
+
+%microtype
+\usepackage{microtype}
+
+% Altfont
+\defaultfontfeatures{Scale=MatchLowercase}
+\setmainfont[Numbers={OldStyle,Proportional}]{Minion Pro}
+\setsansfont[Numbers={OldStyle,Proportional}]{Myriad Pro SemiCondensed}
+% \setmonofont[Scale=MatchLowercase]{PragmataPro}
+\setmonofont[Scale=MatchLowercase]{Iosevka Type Light}
+
+% Change running heads
+
+% Define a new pagestyle
+\newfontfamily{\runheadfont}{Myriad Pro Light SemiCondensed}
+\DeclareTextFontCommand{\textrunheadfont}{\runheadfont}
+
+\renewcommand{\chaptermark}[1]{\markboth{\thechapter.\ #1}{}}
+\renewcommand{\sectionmark}[1]{\markright{#1}}
+
+\fancypagestyle{dataviz}{
+  \fancyhf{}
+  \fancyhead[LE]{\runheadfont\thepage\quad{\newlinetospace{\leftmark}}}
+  \fancyhead[RO]{\runheadfont\newlinetospace{\rightmark}\quad\thepage}
+  % \fancyhead[RE,RO]{\runheadfont\newlinetospace{\plaintitle}\quad\thepage}
+}
+
+\pagestyle{dataviz}
+
+% Set 11/13.5 spacing. (tufte-book class ignores fontsize in the class options) 
+\AtBeginDocument{%
+  \fontsize{12}{14}\selectfont
+}
+
+\fi % end pdflatex vs xelatex choices for minion
+
+$endif$
+
+$if(usecharter)$
+
+% charter setup is for pdflatex only
+\usepackage[$if(fontenc)$$fontenc$$else$T1$endif$]{fontenc}
+\usepackage[utf8]{inputenc}
+ \usepackage[charter]{mathdesign}
+ \def\rmdefault{bch} % not scaled
+ \def\sfdefault{SourceSansPro-TLF}
+ \def\SourceSansPro@scale{1.02}
+ \usepackage[scaled=0.85]{beramono}
+% \def\ttdefault{blg}
+ {\ttfamily\selectfont
+   \DeclareFontShape{T1}{fvm}{k}{n}{<-> ssub * fvm/b/n}{}}
+% \usepackage{ulgothic}
+% \usepackage[scale=0.85]{inconsolata}
+ \usepackage{textcomp}
+
+ 
+\usepackage[expansion=false,kerning=true]{microtype}[\filedate]
+ \DeclareMicrotypeSet*[protrusion]
+      { doc }
+      { encoding = {*, TS1, OMS},
+        family   = {rm*, tt*},
+        size     = {footnotesize, small, normalsize} }
+ \SetProtrusion
+      { encoding = OMS,
+        family   = mdbch }
+      { "68 = {400, },  % \langle
+        "69 = { ,400} } % \rangle
+ \DeclareMicrotypeSet*[kerning]
+      { doc }
+      { encoding = T1,
+        family   = blg, % typewriter font and ...
+        font     = * }  % French sample in section \ref{sub:kerning}
+ \SetExtraKerning
+      { encoding = T1,
+        family   = blg }
+      { _ = {100,100} } % underscores shouldn't touch
+ \ifxetex\else
+ % disable ?` and !` ligatures (sample in section \ref{sec:disable-ligatures})
+ \DisableLigatures[?,!]{encoding = *, family = rm* }
+ \fi
+ % Fraktur sample in section \ref{sec:lettersp}
+ \IfFileExists{t1mwr.fd}
+   {\def\textfrak##1{{\fontfamily{mwr}\selectfont ##1}}
+    \ifpdf
+      \SetTracking[no ligatures={f,s,c}]{encoding=T1,family=mwr}{120}
+    \fi}
+   {\IfFileExists{yfonts.sty}
+     {\usepackage{yfonts}
+      \ifpdf
+        \SetTracking[no ligatures={f,s,c}]{encoding=LY,family=yfrak}{120}
+      \fi}
+     {\def\textfrak{\rule{.5em}{1.5ex}\@gobble}}}
+\tolerance=700
+\ifpdf
+  \ifluatex % microtype.dtx finally compiles with 0.35!
+    \microtypesetup{kerning=false}
+    \def\pdftexversion{200} % in TeX Live 2015, they let this to \luatexversion
+  \fi
+  \ifnum\pdftexversion<140 \else % pdftex 1.40, including textmatrix patch,
+    \microtypesetup{expansion=alltext,step=1} % hence we can activate expansion ...
+    \tolerance=300         % ... and make TeX almost as intolerant as it normally is
+ %   \g@addto@macro\macrocode{\microtypesetup{expansion=false}}
+    \pdfminorversion=5 % for the OCGs (default since TeX Live 2010)
+  \fi
+  % bonus material
+  \InputIfFileExists{microtype-logo.dtx}\relax\relax
+  \InputIfFileExists{microtype-lssample.dtx}\relax\relax
+\else
+  \let\lsstyle\relax
+\fi
+\ifxetex
+  \microtypesetup{kerning=false}
+\fi
+
+%Set 11/13.5 spacing. (tufte-book class ignores fontsize in the class options) 
+%\AtBeginDocument{%
+%  \fontsize{10}{11.5}\selectfont
+%}
+
+$endif$
+
+
+$if(euro)$
+\usepackage{eurosym}
+\newcommand{\euro}{€}
+$endif$
+
+% Fira
+$if(usefira)$
+% microtype
+\usepackage{microtype}
+
+\usepackage[sfdefault,book]{FiraSans}
+\usepackage[scale=0.9]{FiraMono}
+
+% Set 11/13.5 spacing. (tufte-book class ignores fontsize in the class options) 
+\AtBeginDocument{%
+  \fontsize{10}{12}\selectfont
+}
+
+$endif$
+
+% graphicx
+\usepackage{graphicx}
+\setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio}
+
+% booktabs
+\usepackage{booktabs}
+
+% subfigures
+\usepackage{subfig}  
+%\newcommand{\subfloat}[2][need a sub-caption]{\subcaptionbox{#1}{#2}}
+
+% url
+\usepackage{url}
+
+% hyperref
+\usepackage{hyperref}
+
+% units.
+\usepackage{units}
+
+% full bleed cover image
+\usepackage{eso-pic}
+
+
+$if(lang)$
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[shorthands=off,$for(babel-otherlangs)$$babel-otherlangs$,$endfor$main=$babel-lang$]{babel}
+$if(babel-newcommands)$
+  $babel-newcommands$
+$endif$
+\else
+  \usepackage{polyglossia}
+  \setmainlanguage[$polyglossia-lang.options$]{$polyglossia-lang.name$}
+$for(polyglossia-otherlangs)$
+  \setotherlanguage[$polyglossia-otherlangs.options$]{$polyglossia-otherlangs.name$}
+$endfor$
+\fi
+$endif$
+
+$if(numbersections)$
+% Control depth of chapter/section numbering
+\setcounter{secnumdepth}{$if(secnumdepth)$$secnumdepth$$else$2$endif$}
+$else$
+\setcounter{secnumdepth}{-1}
+$endif$
+
+% citations
+$if(natbib)$
+\usepackage{natbib}
+\bibliographystyle{$if(biblio-style)$$biblio-style$$else$plainnat$endif$}
+$endif$
+$if(biblatex)$
+\usepackage{biblatex}
+$for(bibliography)$
+\addbibresource{$bibliography$}
+$endfor$
+$endif$
+
+% pandoc syntax highlighting
+$if(highlighting-macros)$
+
+$highlighting-macros$
+
+% Choose size of shaded code blocks without shrinking inline code.
+\renewenvironment{Shaded} {\begin{snugshade}\small} {\end{snugshade}}
+
+$endif$
+
+% longtable
+$if(tables)$
+\usepackage{longtable,booktabs}
+$endif$
+
+% listings
+$if(listings)$
+\usepackage{fancyvrb}
+\usepackage{listings}
+\lstset{frame=single, columns=fixed, basicstyle=\footnotesize\ttfamily, keepspaces=true, showstringspaces=false, numbers=none, framesep=10pt, xleftmargin=10pt,xrightmargin=10pt}
+$endif$
+
+% pandoc-crossref
+$if(pandoc-crossref)$
+\usepackage{cleveref}
+$endif$
+
+% multiplecol
+\usepackage{multicol}
+
+% strikeout
+\usepackage[normalem]{ulem}
+
+% morefloats
+\usepackage{morefloats}
+
+$if(ctex)$
+\usepackage{ctexcap}
+$endif$
+
+% tightlist macro required by pandoc >= 1.14
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+% title / author / date
+$if(title)$
+\title{$title$}
+$endif$
+$if(author)$
+\author{$for(author)$$author.name$$sep$ \and $endfor$}
+$endif$
+$if(date)$
+\date{$date$}
+$else$
+\date{}
+$endif$
+
+%% -- tint overrides
+%% fonts, using roboto (condensed) as default
+% \usepackage[sfdefault,condensed]{roboto}
+%% also nice: \usepackage[default]{lato}
+
+%% colored links, setting 'borrowed' from RJournal.sty with 'Thanks, Achim!'
+\RequirePackage{color}
+\definecolor{link}{rgb}{0.1,0.1,0.8} %% blue with some grey
+\hypersetup{
+  colorlinks,%
+  citecolor=link,%
+  filecolor=link,%
+  linkcolor=link,%
+  urlcolor=link
+}
+
+%% macros
+\makeatletter
+
+%%
+% Set the font sizes and baselines slightly larger than Tufte's
+% \@xipt{15} (11/15) as opposed to \@xpt{14} (10/14)
+\renewcommand\normalsize{%
+   \@setfontsize\normalsize\@xipt{15}%
+   \abovedisplayskip 12\p@ \@plus2\p@ \@minus5\p@
+   \abovedisplayshortskip \z@ \@plus3\p@
+   \belowdisplayshortskip 6\p@ \@plus3\p@ \@minus3\p@
+   \belowdisplayskip \abovedisplayskip
+   \let\@listi\@listI}
+\normalbaselineskip=14pt
+\normalsize
+\renewcommand\small{%
+   \@setfontsize\small\@ixpt{12}%
+   \abovedisplayskip 8.5\p@ \@plus3\p@ \@minus4\p@
+   \abovedisplayshortskip \z@ \@plus2\p@
+   \belowdisplayshortskip 4\p@ \@plus2\p@ \@minus2\p@
+   \def\@listi{\leftmargin\leftmargini
+               \topsep 4\p@ \@plus2\p@ \@minus2\p@
+               \parsep 2\p@ \@plus\p@ \@minus\p@
+               \itemsep \parsep}%
+   \belowdisplayskip \abovedisplayskip
+}
+\renewcommand\footnotesize{%
+   \@setfontsize\footnotesize\@viiipt{10}%
+   \abovedisplayskip 6\p@ \@plus2\p@ \@minus4\p@
+   \abovedisplayshortskip \z@ \@plus\p@
+   \belowdisplayshortskip 3\p@ \@plus\p@ \@minus2\p@
+   \def\@listi{\leftmargin\leftmargini
+               \topsep 3\p@ \@plus\p@ \@minus\p@
+               \parsep 2\p@ \@plus\p@ \@minus\p@
+               \itemsep \parsep}%
+   \belowdisplayskip \abovedisplayskip
+}
+\renewcommand\scriptsize{\@setfontsize\scriptsize\@viipt\@viiipt}
+\renewcommand\tiny{\@setfontsize\tiny\@vpt\@vipt}
+\renewcommand\large{\@setfontsize\large\@xipt{15}}
+\renewcommand\Large{\@setfontsize\Large\@xiipt{16}}
+\renewcommand\LARGE{\@setfontsize\LARGE\@xivpt{18}}
+\renewcommand\huge{\@setfontsize\huge\@xxpt{30}}
+\renewcommand\Huge{\@setfontsize\Huge{24}{36}}
+
+\setlength\leftmargini   {1pc}
+\setlength\leftmarginii  {1pc}
+\setlength\leftmarginiii {1pc}
+\setlength\leftmarginiv  {1pc}
+\setlength\leftmarginv   {1pc}
+\setlength\leftmarginvi  {1pc}
+\setlength\labelsep      {.5pc}
+\setlength\labelwidth    {\leftmargini}
+\addtolength\labelwidth{-\labelsep}
+
+
+
+
+\renewcommand{\maketitle}{%     
+  \newpage
+  \global\@topnum\z@% prevent floats from being placed at the top of the page
+  \begingroup
+    \setlength{\parindent}{0pt}%
+    \setlength{\parskip}{4pt}%
+    \let\@@title\@empty
+    \let\@@author\@empty
+    \let\@@date\@empty
+    \ifthenelse{\boolean{@tufte@sfsidenotes}}{%
+      %\gdef\@@title{\sffamily\LARGE\allcaps{\@title}\par}%
+      %\gdef\@@author{\sffamily\Large\allcaps{\@author}\par}%
+      %\gdef\@@date{\sffamily\Large\allcaps{\@date}\par}%
+      \gdef\@@title{\begingroup\fontseries{b}\selectfont\huge{\@title}\par}%
+      \gdef\@@author{\begingroup\fontseries{l}\selectfont\Large{\@author}\par}%
+      \gdef\@@date{\begingroup\fontseries{l}\selectfont\Large{\@date}\par}%
+    }{%
+      %\gdef\@@title{\LARGE\itshape\@title\par}%
+      %\gdef\@@author{\Large\itshape\@author\par}%
+      %\gdef\@@date{\Large\itshape\@date\par}%
+      \gdef\@@title{\begingroup\fontseries{b}\selectfont\LARGE\@title\par\endgroup}%
+      \gdef\@@author{\begingroup\fontseries{l}\selectfont\Large\@author\par\endgroup}%
+      \gdef\@@date{\begingroup\fontseries{l}\selectfont\Large\@date\par\endgroup}%
+    }%
+    \@@title
+    \@@author
+    \@@date
+  \endgroup
+  \thispagestyle{empty}% suppress the running head
+  \tuftebreak% add some space before the text begins
+  \@afterindentfalse\@afterheading% suppress indentation of the next paragraph
+}
+
+\titleformat{\chapter}%
+  [display]% shape
+  {\relax\ifthenelse{\NOT\boolean{@tufte@symmetric}}{\begin{fullwidth}}{}}% format applied to label+text
+  {\huge\sffamily\bfseries\thechapter}% label
+  {0pt}% horizontal separation between label and title body
+  {\huge\sffamily\bfseries}% before the title body
+  [\ifthenelse{\NOT\boolean{@tufte@symmetric}}{\end{fullwidth}}{}]% after the title body
+
+
+%% -- tint does not use italics or allcaps in section/subsection/paragraph
+\titleformat{\section}%
+  [hang]% shape
+  %{\normalfont\Large\itshape}% format applied to label+text
+  {\fontseries{b}\selectfont\Large\sffamily\bfseries}% format applied to label+text
+  {\thesection}% label
+  {1em}% horizontal separation between label and title body
+  {}% before the title body
+  []% after the title body
+
+\titleformat{\subsection}%
+  [hang]% shape
+  %{\normalfont\large\itshape}% format applied to label+text
+  {\fontseries{m}\selectfont\large\sffamily}% format applied to label+text
+  {\thesubsection}% label
+  {1em}% horizontal separation between label and title body
+  {}% before the title body
+  []% after the title body
+
+\titleformat{\paragraph}%
+  [runin]% shape
+  %{\normalfont\itshape}% format applied to label+text
+  {\fontseries{l}\selectfont}% format applied to label+text
+  {\theparagraph}% label
+  {1em}% horizontal separation between label and title body
+  {}% before the title body
+  []% after the title body
+
+%% -- tint does not use italics here either
+% Formatting for main TOC (printed in front matter)
+% {section} [left] {above} {before w/label} {before w/o label} {filler + page} [after]
+\ifthenelse{\boolean{@tufte@toc}}{%
+  \titlecontents{part}% FIXME
+    [0em] % distance from left margin
+    %{\vspace{1.5\baselineskip}\begin{fullwidth}\LARGE\rmfamily\itshape} % above (global formatting of entry)
+    {\vspace{1.5\baselineskip}\begin{fullwidth}\fontseries{m}\selectfont\LARGE\bfseries} % above (global formatting of entry)
+    {\contentslabel{2em}} % before w/label (label = ``II'')
+    {} % before w/o label
+    {\sffamily\upshape\qquad\thecontentspage} % filler + page (leaders and page num)
+    [\end{fullwidth}] % after
+  \titlecontents{chapter}%
+    [0em] % distance from left margin
+    %{\vspace{1.5\baselineskip}\begin{fullwidth}\LARGE\rmfamily\itshape} % above (global formatting of entry)
+    {\vspace{1.5\baselineskip}\begin{fullwidth}\fontseries{m}\selectfont\sffamily\LARGE\bfseries} % above (global formatting of entry)
+    {\hspace*{0em}\contentslabel{2em}} % before w/label (label = ``2'')
+    {\hspace*{0em}} % before w/o label
+    %{\rmfamily\upshape\qquad\thecontentspage} % filler + page (leaders and page num)
+    {\sffamily\upshape\qquad\thecontentspage} % filler + page (leaders and page num)
+    [\end{fullwidth}] % after
+  \titlecontents{section}% FIXME
+    [0em] % distance from left margin
+    %{\vspace{0\baselineskip}\begin{fullwidth}\Large\rmfamily\itshape} % above (global formatting of entry)
+    {\vspace{0\baselineskip}\begin{fullwidth}\fontseries{m}\selectfont\Large} % above (global formatting of entry)
+    {\hspace*{2em}\contentslabel{2em}} % before w/label (label = ``2.6'')
+    {\hspace*{2em}} % before w/o label
+    %{\rmfamily\upshape\qquad\thecontentspage} % filler + page (leaders and page num)
+    {\upshape\qquad\thecontentspage} % filler + page (leaders and page num)
+    [\end{fullwidth}] % after
+  \titlecontents{subsection}% FIXME
+    [0em] % distance from left margin
+    %{\vspace{0\baselineskip}\begin{fullwidth}\large\rmfamily\itshape} % above (global formatting of entry)
+    {\vspace{0\baselineskip}\begin{fullwidth}\fontseries{m}\selectfont\large} % above (global formatting of entry)
+    {\hspace*{4em}\contentslabel{4em}} % before w/label (label = ``2.6.1'')
+    {\hspace*{4em}} % before w/o label
+    %{\rmfamily\upshape\qquad\thecontentspage} % filler + page (leaders and page num)
+    {\upshape\qquad\thecontentspage} % filler + page (leaders and page num)
+    [\end{fullwidth}] % after
+  \titlecontents{paragraph}% FIXME
+    [0em] % distance from left margin
+    %{\vspace{0\baselineskip}\begin{fullwidth}\normalsize\rmfamily\itshape} % above (global formatting of entry)
+    {\vspace{0\baselineskip}\begin{fullwidth}\fontseries{m}\selectfont\normalsize} % above (global formatting of entry)
+    {\hspace*{6em}\contentslabel{2em}} % before w/label (label = ``2.6.0.0.1'')
+    {\hspace*{6em}} % before w/o label
+    %{\rmfamily\upshape\qquad\thecontentspage} % filler + page (leaders and page num)
+    {\upshape\qquad\thecontentspage} % filler + page (leaders and page num)
+    [\end{fullwidth}] % after
+}{}
+
+
+\makeatother
+
+% Keep the verbatim output small, like snugshade env is.
+$if(smallverbatim)$
+\fvset{fontsize=$smallverbatim$}
+\RecustomVerbatimEnvironment{verbatim}{Verbatim}{}
+$endif$
+
+$for(header-includes)$
+$header-includes$
+$endfor$
+
+\begin{document}
+
+% $if(cover-image)$
+
+\clearpage
+\thispagestyle{empty}
+
+% hack to make a blank page by inserting a space
+\ 
+
+
+\AddToShipoutPictureBG*{% Add picture to current page
+  \AtStockLowerLeft{% Add picture to lower-left corner of paper stock
+    \includegraphics[width=\paperwidth,height=\paperheight]{assets/dubois-cover-executive.png}}%
+}
+
+% http://tex.stackexchange.com/questions/24988/how-to-place-an-image-over-a-full-including-bleed-page-in-memoir
+% for memoir class use \stockwidth and \stockheight
+
+% \bigskip
+% \begin{figure*}\includegraphics[width=1\linewidth]{$cover-image$}\end{figure*}
+
+\clearpage
+\newpage
+\thispagestyle{empty}
+
+\
+
+% open the title on a recto page
+\clearpage
+\newpage
+\thispagestyle{empty}
+
+$if(title)$
+\maketitle
+
+$if(disclaimer)$
+\vspace*{\fill}
+$disclaimer$
+\clearpage
+\newpage
+\thispagestyle{empty}
+$endif$
+$endif$
+
+$if(cover-note)$
+\bigskip
+\noindent {\sffamily\bfseries About the Cover} \\
+\smallskip
+$cover-note$
+\medskip
+$endif$
+
+
+$if(author-note)$
+\bigskip
+\noindent {\sffamily\bfseries About the Author} \\
+\smallskip
+$author-note$
+\medskip
+$endif$
+
+$if(copyright-page)$
+\vspace*{\fill}
+
+\thispagestyle{empty}
+%% copyrightpage
+\begingroup
+\footnotesize
+\parindent 0pt
+\parskip \baselineskip
+\textcopyright{} $if(copyright-year)$$copyright-year$$endif$ $if(author)$$for(author)$$author.name$$sep$ \and $endfor$$endif$ \  All rights reserved.
+\endgroup
+\clearpage
+\normalsize
+\newpage
+$endif$
+
+$if(dedication)$
+
+\thispagestyle{empty}
+
+\par\vspace*{.35\textheight}{\centering $dedication$ \par}
+
+\clearpage
+\normalsize
+\newpage
+
+$endif$
+
+
+\pagestyle{dataviz}
+
+% Frontmatter begins here
+\frontmatter
+\pagenumbering{roman} 
+$endif$
+
+$if(abstract)$
+\begin{abstract}
+\noindent $abstract$
+\end{abstract}
+$endif$
+
+$for(include-before)$
+$include-before$
+$endfor$
+
+$if(toc)$
+{
+$if(colorlinks)$
+\hypersetup{linkcolor=$if(toccolor)$$toccolor$$else$black$endif$}
+$endif$
+\setcounter{tocdepth}{$toc-depth$}
+\tableofcontents
+}
+$endif$
+$if(lot)$
+\listoftables
+$endif$
+$if(lof)$
+\listoffigures
+$endif$
+
+% Main matter starts here
+% \mainmatter
+% For this template \mainmatter defined in the text, after the Preface
+
+$body$
+
+\backmatter
+\twocolumn
+
+$if(natbib)$
+$if(bibliography)$
+$if(biblio-title)$
+$if(book-class)$
+\renewcommand\bibname{$biblio-title$}
+$else$
+\renewcommand\refname{$biblio-title$}
+$endif$
+$endif$
+\bibliography{$for(bibliography)$$bibliography$$sep$,$endfor$}
+
+$endif$
+$endif$
+$if(biblatex)$
+\printbibliography$if(biblio-title)$[title=$biblio-title$]$endif$
+$endif$
+
+
+
+$if(colophon-note)$
+\clearpage
+\newpage
+\onecolumn
+\normalsize
+\thispagestyle{empty}
+{\sffamily\bfseries Colophon} \\
+\smallskip
+$colophon-note$
+$endif$
+
+$for(include-after)$
+$include-after$
+$endfor$
+
+\end{document}
