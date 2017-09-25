@@ -38,15 +38,15 @@
 
 \fancypagestyle{dataviz}{
   \fancyhf{}
-  \fancyhead[LE]{\sffamily\thepage\quad{\newlinetospace{\leftmark}}}
-  \fancyhead[RO]{\sffamily\newlinetospace{\rightmark}\quad\thepage}
+  \fancyhead[LE]{\sffamily\small\thepage\quad{\newlinetospace{\leftmark}}}
+  \fancyhead[RO]{\sffamily\small\newlinetospace{\rightmark}\quad\thepage}
   % \fancyhead[RE,RO]{\runheadfont\newlinetospace{\plaintitle}\quad\thepage}
 }
 
 \fancypagestyle{plain}{
   \fancyhf{}
-  \fancyhead[LE]{\sffamily\thepage}
-  \fancyhead[RO]{\sffamily\quad\thepage}
+  \fancyhead[LE]{\sffamily\small\thepage}
+  \fancyhead[RO]{\sffamily\small\quad\thepage}
   % \fancyhead[RE,RO]{\runheadfont\newlinetospace{\plaintitle}\quad\thepage}
 }
 
@@ -68,11 +68,6 @@ $if(useminion)$
 \usepackage[medfamily,footnotefigures]{MyriadPro}
 \usepackage[scale=0.9]{inconsolata}
 \usepackage[toc,eqno,enum,bib,lineno]{tabfigures}
-
-% Set 11/13.5 spacing. (tufte-book class ignores fontsize in the class options) 
-\AtBeginDocument{%
-  \fontsize{11}{13.5}\selectfont
-}
 
 %% xelatex minion
 \else % if luatex or xelatex
@@ -119,7 +114,7 @@ $if(useminion)$
 
 % Set 11/13.5 spacing. (tufte-book class ignores fontsize in the class options) 
 \AtBeginDocument{%
-  \fontsize{12}{14}\selectfont
+  \fontsize{10}{12}\selectfont
 }
 
 \fi % end pdflatex vs xelatex choices for minion
@@ -494,49 +489,49 @@ $endif$
 % {section} [left] {above} {before w/label} {before w/o label} {filler + page} [after]
 \ifthenelse{\boolean{@tufte@toc}}{%
   \titlecontents{part}% FIXME
-    [0em] % distance from left margin
-    %{\vspace{1.5\baselineskip}\begin{fullwidth}\LARGE\rmfamily\itshape} % above (global formatting of entry)
-    {\vspace{1.5\baselineskip}\begin{fullwidth}\fontseries{m}\selectfont\LARGE\bfseries} % above (global formatting of entry)
+    [1.25em] % distance from left margin
+    %{\vspace{1.5\baselineskip}\LARGE\rmfamily\itshape} % above (global formatting of entry)
+    {\vspace{1.5\baselineskip}\fontseries{m}\selectfont\LARGE\bfseries} % above (global formatting of entry)
     {\contentslabel{2em}} % before w/label (label = ``II'')
     {} % before w/o label
     {\sffamily\upshape\qquad\thecontentspage} % filler + page (leaders and page num)
-    [\end{fullwidth}] % after
+    [] % after
   \titlecontents{chapter}%
-    [0em] % distance from left margin
-    %{\vspace{1.5\baselineskip}\begin{fullwidth}\LARGE\rmfamily\itshape} % above (global formatting of entry)
-    {\vspace{1.5\baselineskip}\begin{fullwidth}\fontseries{m}\selectfont\sffamily\LARGE\bfseries} % above (global formatting of entry)
+    [1.25em] % distance from left margin
+    %{\vspace{1.5\baselineskip}\LARGE\rmfamily\itshape} % above (global formatting of entry)
+    {\vspace{1.5\baselineskip}\fontseries{m}\selectfont\sffamily\LARGE\bfseries} % above (global formatting of entry)
     {\hspace*{0em}\contentslabel{2em}} % before w/label (label = ``2'')
     {\hspace*{0em}} % before w/o label
     %{\rmfamily\upshape\qquad\thecontentspage} % filler + page (leaders and page num)
     {\sffamily\upshape\qquad\thecontentspage} % filler + page (leaders and page num)
-    [\end{fullwidth}] % after
+    [] % after
   \titlecontents{section}% FIXME
-    [0em] % distance from left margin
-    %{\vspace{0\baselineskip}\begin{fullwidth}\Large\rmfamily\itshape} % above (global formatting of entry)
-    {\vspace{0\baselineskip}\begin{fullwidth}\fontseries{m}\selectfont\Large} % above (global formatting of entry)
+    [1.25em] % distance from left margin
+    %{\vspace{0\baselineskip}\Large\rmfamily\itshape} % above (global formatting of entry)
+    {\vspace{0\baselineskip}\fontseries{m}\selectfont\Large} % above (global formatting of entry)
     {\hspace*{2em}\contentslabel{2em}} % before w/label (label = ``2.6'')
     {\hspace*{2em}} % before w/o label
     %{\rmfamily\upshape\qquad\thecontentspage} % filler + page (leaders and page num)
     {\upshape\qquad\thecontentspage} % filler + page (leaders and page num)
-    [\end{fullwidth}] % after
+    [] % after
   \titlecontents{subsection}% FIXME
-    [0em] % distance from left margin
-    %{\vspace{0\baselineskip}\begin{fullwidth}\large\rmfamily\itshape} % above (global formatting of entry)
-    {\vspace{0\baselineskip}\begin{fullwidth}\fontseries{m}\selectfont\large} % above (global formatting of entry)
+    [1.25em] % distance from left margin
+    %{\vspace{0\baselineskip}\large\rmfamily\itshape} % above (global formatting of entry)
+    {\vspace{0\baselineskip}\fontseries{m}\selectfont\large} % above (global formatting of entry)
     {\hspace*{4em}\contentslabel{4em}} % before w/label (label = ``2.6.1'')
     {\hspace*{4em}} % before w/o label
     %{\rmfamily\upshape\qquad\thecontentspage} % filler + page (leaders and page num)
     {\upshape\qquad\thecontentspage} % filler + page (leaders and page num)
-    [\end{fullwidth}] % after
+    [] % after
   \titlecontents{paragraph}% FIXME
-    [0em] % distance from left margin
-    %{\vspace{0\baselineskip}\begin{fullwidth}\normalsize\rmfamily\itshape} % above (global formatting of entry)
-    {\vspace{0\baselineskip}\begin{fullwidth}\fontseries{m}\selectfont\normalsize} % above (global formatting of entry)
+    [1.25em] % distance from left margin
+    %{\vspace{0\baselineskip}\normalsize\rmfamily\itshape} % above (global formatting of entry)
+    {\vspace{0\baselineskip}\fontseries{m}\selectfont\normalsize} % above (global formatting of entry)
     {\hspace*{6em}\contentslabel{2em}} % before w/label (label = ``2.6.0.0.1'')
     {\hspace*{6em}} % before w/o label
     %{\rmfamily\upshape\qquad\thecontentspage} % filler + page (leaders and page num)
     {\upshape\qquad\thecontentspage} % filler + page (leaders and page num)
-    [\end{fullwidth}] % after
+    [] % after
 }{}
 
 
