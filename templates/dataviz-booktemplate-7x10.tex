@@ -19,6 +19,10 @@
   marginparwidth=37.03mm,
   includehead}
 
+$if(cropmarks)$
+\usepackage[cross,executive,center,pdflatex]{crop}
+$endif$
+
 % ams
 \usepackage{amssymb,amsmath}
 
@@ -26,6 +30,7 @@
 % tools
 \usepackage{etoolbox}
 \usepackage{fancyhdr}
+
 
 \usepackage{ifxetex,ifluatex}
 \usepackage{fixltx2e} % provides \textsubscript
