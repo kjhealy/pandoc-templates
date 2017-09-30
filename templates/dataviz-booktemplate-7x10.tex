@@ -59,6 +59,13 @@ $endif$
 \appto\frontmatter{\pagestyle{plain}}
 \appto\mainmatter{\pagestyle{dataviz}}
 
+\usepackage{etoolbox}
+\makeatletter
+\AtBeginEnvironment{figure*}{%
+  \let\caption\@tufte@orig@caption%
+  \let\label\@tufte@orig@label}
+\makeatother
+
 $if(useminion)$
 
 %% if using pdflatex
@@ -71,6 +78,7 @@ $if(useminion)$
 
 \usepackage[fullfamily,opticals,footnotefigures]{MinionPro}
 \usepackage[medfamily,footnotefigures]{MyriadPro}
+%\usepackage[scaled=0.8]{beramono}
 \usepackage[scale=0.9]{inconsolata}
 \usepackage[toc,eqno,enum,bib,lineno]{tabfigures}
 
@@ -97,21 +105,29 @@ $if(useminion)$
 \setmainfont[Numbers={OldStyle,Proportional}]{Minion Pro}
 \setsansfont[Numbers={OldStyle,Proportional}]{Myriad Pro SemiCondensed}
 % \setmonofont[Scale=MatchLowercase]{PragmataPro}
-\setmonofont[Scale=MatchLowercase]{Iosevka Type Light}
+\setmonofont{Iosevka Type}[Scale=MatchLowercase, Ligatures = TeX, BoldFont = {Iosevka Type Medium}]
 
 % Change running heads
 
 % Define a new pagestyle
-\newfontfamily{\runheadfont}{Myriad Pro Light SemiCondensed}
+\newfontfamily{\runheadfont}{Myriad Pro SemiCondensed}
 \DeclareTextFontCommand{\textrunheadfont}{\runheadfont}
 
 \renewcommand{\chaptermark}[1]{\markboth{\thechapter.\ #1}{}}
 \renewcommand{\sectionmark}[1]{\markright{#1}}
 
+\fancypagestyle{plain}{
+  \fancyhf{}
+  \fancyhead[LE]{\runheadfont\small\thepage}
+  \fancyhead[RO]{\runheadfont\small\quad\thepage}
+  % \fancyhead[RE,RO]{\runheadfont\newlinetospace{\plaintitle}\quad\thepage}
+}
+
+
 \fancypagestyle{dataviz}{
   \fancyhf{}
-  \fancyhead[LE]{\runheadfont\thepage\quad{\newlinetospace{\leftmark}}}
-  \fancyhead[RO]{\runheadfont\newlinetospace{\rightmark}\quad\thepage}
+  \fancyhead[LE]{\small\runheadfont\thepage\quad{\newlinetospace{\leftmark}}}
+  \fancyhead[RO]{\small\runheadfont\newlinetospace{\rightmark}\quad\thepage}
   % \fancyhead[RE,RO]{\runheadfont\newlinetospace{\plaintitle}\quad\thepage}
 }
 
