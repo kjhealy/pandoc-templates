@@ -35,6 +35,10 @@ $endif$
 \usepackage{ifxetex,ifluatex}
 \usepackage{fixltx2e} % provides \textsubscript
 
+% assignment arrow
+% \usepackage{newunicodechar}
+% \newunicodechar{←}{\leftarrow}
+
 % Define a new pagestyle
 \makeatletter
 \renewcommand{\chaptermark}[1]{\markboth{\thechapter.\ #1}{}}
@@ -104,8 +108,8 @@ $if(useminion)$
 \defaultfontfeatures{Scale=MatchLowercase}
 \setmainfont[Numbers={OldStyle,Proportional}]{Minion Pro}
 \setsansfont[Numbers={OldStyle,Proportional}]{Myriad Pro SemiCondensed}
-% \setmonofont[Scale=MatchLowercase]{PragmataPro}
-\setmonofont{Iosevka Type}[Scale=MatchLowercase, Ligatures = TeX, BoldFont = {Iosevka Type Medium}]
+\setmonofont{Iosevka Type}[Scale=MatchLowercase, BoldFont = {Iosevka Type Medium}]
+\setmathtt{Iosevka Type}[Scale=MatchLowercase, BoldFont = {Iosevka Type Medium}]
 
 % Change running heads
 
