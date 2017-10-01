@@ -63,12 +63,19 @@ $endif$
 \appto\frontmatter{\pagestyle{plain}}
 \appto\mainmatter{\pagestyle{dataviz}}
 
-\usepackage{etoolbox}
-\makeatletter
-\AtBeginEnvironment{figure*}{%
-  \let\caption\@tufte@orig@caption%
-  \let\label\@tufte@orig@label}
-\makeatother
+% \makeatletter
+% \renewenvironment{figure*}[1][htbp]{%
+%   \@tufte@orig@float{figure}[#1]%
+% }{%
+%   \@tufte@orig@endfloat
+% }
+
+% \renewenvironment{table*}[1][htbp]{%
+%   \@tufte@orig@float{table}[#1]%
+% }{%
+%   \@tufte@orig@endfloat
+% }
+% \makeatother
 
 $if(useminion)$
 
