@@ -7,9 +7,9 @@
 ## -	Using `make` without arguments will generate html, tex, and pdf 
 ## 	output files from all of the files with the designated markdown
 ##	extension. The default is `.md` but you can change this. 
-## -	You can specify an output format with `make tex`, `make pdf` or 
-## - 	`make html`. 
-## -	Doing `make clean` will remove all the .tex, .html, and .pdf files 
+## -	You can specify an output format with `make tex`, `make pdf`,  
+## - 	`make html`, or `make docx`.
+## -	Doing `make clean` will remove all the .tex, .html, .pdf, and .docx files 
 ## 	in your working directory. Make sure you do not have files in these
 ##	formats that you want to keep!
 
@@ -32,13 +32,15 @@ CSL = apsa
 PDFS=$(SRC:.md=.pdf)
 HTML=$(SRC:.md=.html)
 TEX=$(SRC:.md=.tex)
+DOCX=$(SRC:.md=.docx)
 
 
-all:	$(PDFS) $(HTML) $(TEX)
+all:	$(PDFS) $(HTML) $(TEX) $(DOCX)
 
 pdf:	clean $(PDFS)
 html:	clean $(HTML)
 tex:	clean $(TEX)
+docx:	clean $(DOCX)
 
 %.html:	%.md
 	pandoc -r markdown+simple_tables+table_captions+yaml_metadata_block -w html -S --template=$(PREFIX)/templates/html.template --css=$(PREFIX)/marked/kultiad-serif.css --filter pandoc-citeproc --csl=$(PREFIX)/csl/$(CSL).csl --bibliography=$(BIB) -o $@ $<
@@ -50,5 +52,9 @@ tex:	clean $(TEX)
 %.pdf:	%.md
 	pandoc -r markdown+simple_tables+table_captions+yaml_metadata_block -s -S --latex-engine=pdflatex --template=$(PREFIX)/templates/latex.template --filter pandoc-citeproc --csl=$(PREFIX)/csl/$(CSL).csl --bibliography=$(BIB) -o $@ $<
 
+
+%.docx: %.md
+	pandoc -r markdown+simple_tables+table_captions+yaml_metadata_block -w docx -S  --filter pandoc-citeproc --csl=$(PREFIX)/csl/$(CSL).csl --bibliography=$(BIB) -o $@ $<
+
 clean:
-	rm -f *.html *.pdf *.tex
+	rm -f *.html *.pdf *.tex *.docx
