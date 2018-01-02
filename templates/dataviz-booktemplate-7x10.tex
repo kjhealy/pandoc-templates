@@ -650,10 +650,52 @@ $if(copyright-page)$
 \thispagestyle{empty}
 %% copyrightpage
 \begingroup
-\footnotesize
+
+\begin{minipage}[b]{0.9\textwidth}
 \parindent 0pt
-\parskip \baselineskip
-\textcopyright{} $if(copyright-year)$$copyright-year$$endif$ $if(author)$$for(author)$$author.name$$sep$ \and $endfor$$endif$ \  All rights reserved.
+\footnotesize\raggedright
+\setlength{\parskip}{0.5\baselineskip}
+
+\textcopyright{} $if(copyright-year)$$copyright-year$$endif$ $if(author)$$for(author)$$author.name$$sep$ \and $endfor$$endif$
+
+Requests for permission to reproduce material from this\newline
+work should be sent to Premissions, Princeton University Press
+
+\smallskip
+
+Published by Princeton University Press,\newline 41 William Street, Princeton, New Jersey 08540\newline In the United Kingdom: Princeton University Press, \newline 6 Oxford Street, Woodstock, Oxfordshire OX20 1TR
+
+\smallskip
+
+\url{press.princeton.edu}
+
+\smallskip
+
+All Rights Reserved
+
+\smallskip
+
+ISBN to follow.
+
+\smallskip
+
+Library of Congress Control Nnumber: to follow
+
+\smallskip
+
+British Library Cataloging-in-Publication Data is available
+
+\smallskip
+
+This book has been composed with open-source tools in Minion Pro,\newline Myriad Pro, and Iosevka Type.
+
+\smallskip
+
+Printed on acid-free paper.
+
+Typesetting and Printing information to follow
+
+\end{minipage}
 \endgroup
 \clearpage
 \normalsize
