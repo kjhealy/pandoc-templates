@@ -89,7 +89,7 @@ $if(useminion)$
 
 \usepackage[fullfamily,opticals,footnotefigures]{MinionPro}
 \usepackage[medfamily,footnotefigures]{MyriadPro}
-%\usepackage[scaled=0.8]{beramono}
+% \usepackage[scaled=0.8]{beramono}
 \usepackage[scale=0.9]{inconsolata}
 \usepackage[toc,eqno,enum,bib,lineno]{tabfigures}
 
@@ -113,8 +113,8 @@ $if(useminion)$
 
 % Altfont
 \defaultfontfeatures{Scale=MatchLowercase}
-\setmainfont[Numbers={OldStyle,Proportional}]{Minion Pro}
-\setsansfont[Numbers={OldStyle,Proportional}]{Myriad Pro SemiCondensed}
+\setmainfont{Minion Pro}[Numbers={OldStyle,Proportional}]
+\setsansfont{Myriad Pro SemiCondensed}[Numbers={OldStyle,Proportional}, BoldFont = {Myriad Pro Semibold SemiCondensed}]
 \setmonofont{Iosevka Type}[Scale=MatchLowercase, BoldFont = {Iosevka Type Medium}]
 \setmathtt{Iosevka Type}[Scale=MatchLowercase, BoldFont = {Iosevka Type Medium}]
 
@@ -148,9 +148,9 @@ $if(useminion)$
 \pagestyle{dataviz}
 
 % Set 11/13.5 spacing. (tufte-book class ignores fontsize in the class options) 
-\AtBeginDocument{%
-  \fontsize{11.5}{13}\selectfont
-}
+%\AtBeginDocument{%
+%  \fontsize{11.5}{13}\selectfont
+%}
 
 \fi % end pdflatex vs xelatex choices for minion
 
@@ -654,7 +654,7 @@ $if(copyright-page)$
 \begin{minipage}[b]{0.9\textwidth}
 \parindent 0pt
 \footnotesize\raggedright
-\setlength{\parskip}{0.5\baselineskip}
+\setlength{\parskip}{0.4\baselineskip}
 
 \textcopyright{} $if(copyright-year)$$copyright-year$$endif$ $if(author)$$for(author)$$author.name$$sep$ \and $endfor$$endif$
 
