@@ -137,14 +137,20 @@ $if(title)$
   $if(disclaimer)$
   <p>$disclaimer$</p>
   $endif$
+
+  $if(marketing)$
+
+    <a href="https://docs.google.com/forms/d/1R3LnCup54zhgmC0YA_fXNQlIjL37_Yn9T_Ulp3OZib0"><p style = "border: 2px solid; border-radius: 20px; background-color: #F99F46; color: #192237; width: 200px; margin: 2px; padding: 10px; text-align: center; font-weight: 700;">Tell Me When the Book will be Available</p></a>
+$endif$
+
   
   $if(cover-image)$
   <p class="small"><span class="marginnote shownote">
-      <img src="$cover-image$" alt="Cover" width="100%">
-      $if(cover-note)$
-      <em>About the Cover Image: </em>
-      $cover-note$
-      $endif$ 
+        <img src="$cover-image$" alt="Cover" width="100%">
+        $if(cover-note)$
+        <em>About the Cover Image: </em>
+        $cover-note$
+        $endif$ 
     </span>
   </p>
   $endif$
@@ -184,6 +190,7 @@ $if(abstract)$
   <p class="abstract">Abstract</p>
   $abstract$
 </div>
+
 $endif$
 $endif$
 
