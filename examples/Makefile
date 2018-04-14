@@ -2,7 +2,7 @@
 ## containing the paper you are writing. Assuming you are using the
 ## rest of the toolchain here, you can use it to create .html, .tex,
 ## and .pdf output files (complete with bibliography, if present) from
-## your markdown file. 
+## your markdown or Rmarkdown fies. 
 ## -	Change the paths at the top of the file as needed.
 ## -	Using `make` without arguments will generate html, tex, and pdf 
 ## 	output files from all of the files with the designated markdown
@@ -11,7 +11,7 @@
 ## - 	`make html`, or `make docx`.
 ## -	Doing `make clean` will remove all the .tex, .html, .pdf, and .docx files 
 ## 	in your working directory. Make sure you do not have files in these
-##	formats that you want to keep!
+##	formats that you want to keep! 
 
 ## Markdown extension (e.g. md, markdown, mdown).
 MEXT = md
