@@ -41,6 +41,7 @@ DOCX=$(SRC:.md=.docx)
 
 all:	$(MD) $(PDFS) $(HTML) $(TEX) $(DOCX)
 
+md:	clean $(MD)
 pdf:	clean $(PDFS)
 html:	clean $(HTML)
 tex:	clean $(TEX)
