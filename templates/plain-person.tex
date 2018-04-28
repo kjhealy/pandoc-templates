@@ -1,0 +1,338 @@
+\documentclass[$if(fontsize)$$fontsize$,$endif$$if(lang)$$lang$,$endif$$if(papersize)$$papersize$,$endif$$for(classoption)$$classoption$$sep$,$endfor$]{$documentclass$}
+
+% ams
+\usepackage{amssymb,amsmath}
+
+% tools
+% tools
+\usepackage{etoolbox}
+\usepackage{fancyhdr}
+\usepackage{ifpdf,ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\usepackage[$if(listings)$listings$endif$,$if(useminion)$minion$endif$,$if(sanshead)$sanshead$endif$]{org-preamble-pdflatex}
+
+$if(sanshead)$
+\def\sfdefault{SourceSansPro-TLF}
+\def\SourceSansPro@scale{1.02}
+\def\bfdefault{b}
+$endif$
+
+
+% % Define a new pagestyle
+% \makeatletter
+% \renewcommand{\chaptermark}[1]{\markboth{\thechapter.\ #1}{}}
+% \renewcommand{\sectionmark}[1]{\markright{#1}}
+% \makeatother
+
+% \fancypagestyle{dataviz}{
+%   \fancyhf{}
+%   \fancyhead[LE]{\sffamily\thepage\quad{\newlinetospace{\leftmark}}}
+%   \fancyhead[RO]{\sffamily\newlinetospace{\rightmark}\quad\thepage}
+%   % \fancyhead[RE,RO]{\runheadfont\newlinetospace{\plaintitle}\quad\thepage}
+% }
+
+% \fancypagestyle{plain}{
+%   \fancyhf{}
+%   \fancyhead[LE]{\sffamily\thepage}
+%   \fancyhead[RO]{\sffamily\quad\thepage}
+%   % \fancyhead[RE,RO]{\runheadfont\newlinetospace{\plaintitle}\quad\thepage}
+% }
+
+% \appto\frontmatter{\pagestyle{plain}}
+% \appto\mainmatter{\pagestyle{dataviz}}
+
+$if(usecharter)$
+\usepackage{microtype-preamble}
+$endif$
+
+
+$if(euro)$
+\usepackage{eurosym}
+\newcommand{\euro}{€}
+$endif$
+
+% graphicx
+\usepackage{graphicx}
+\setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio}
+
+% subfigures
+\usepackage{subfig}  
+%\newcommand{\subfloat}[2][need a sub-caption]{\subcaptionbox{#1}{#2}}
+
+% url
+\usepackage{url}
+
+% hyperref
+\usepackage{hyperref}
+
+% units.
+\usepackage{units}
+
+% full bleed cover image
+\usepackage{eso-pic}
+
+
+$if(numbersections)$
+% Control depth of chapter/section numbering
+\setcounter{secnumdepth}{$if(secnumdepth)$$secnumdepth$$else$2$endif$}
+$else$
+\setcounter{secnumdepth}{-1}
+$endif$
+
+% citations
+$if(natbib)$
+\usepackage{natbib}
+\bibliographystyle{$if(biblio-style)$$biblio-style$$else$plainnat$endif$}
+$endif$
+$if(biblatex)$
+\usepackage{biblatex}
+$for(bibliography)$
+\addbibresource{$bibliography$}
+$endfor$
+$endif$
+
+% pandoc syntax highlighting
+$if(highlighting-macros)$
+
+$highlighting-macros$
+
+% Choose size of shaded code blocks without shrinking inline code.
+\renewenvironment{Shaded} {\begin{snugshade}\small} {\end{snugshade}}
+
+$endif$
+
+% longtable
+$if(tables)$
+\usepackage{longtable,booktabs}
+$endif$
+
+% listings
+$if(listings)$
+% \usepackage{fancyvrb}
+% \usepackage{listings}
+% \lstset{frame=single, columns=fixed, basicstyle=\footnotesize\ttfamily, keepspaces=true, showstringspaces=false, numbers=none, framesep=10pt, xleftmargin=10pt,xrightmargin=10pt}
+\newcommand{\passthrough}[1]{#1}
+$endif$
+
+% pandoc-crossref
+$if(pandoc-crossref)$
+\usepackage{cleveref}
+$endif$
+
+% multiplecol
+\usepackage{multicol}
+
+% strikeout
+\usepackage[normalem]{ulem}
+
+% morefloats
+\usepackage{morefloats}
+
+$if(ctex)$
+\usepackage{ctexcap}
+$endif$
+
+% tightlist macro required by pandoc >= 1.14
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+% title / author / date
+$if(title)$
+\title{$title$}
+$endif$
+$if(author)$
+\author{$for(author)$$author.name$$sep$ \and $endfor$}
+$endif$
+$if(date)$
+\date{$date$}
+$else$
+\date{}
+$endif$
+
+% Keep the verbatim output small, like snugshade env is.
+$if(smallverbatim)$
+%\fvset{fontsize=$smallverbatim$}
+%\RecustomVerbatimEnvironment{verbatim}{Verbatim}{}
+$endif$
+
+$for(header-includes)$
+$header-includes$
+$endfor$
+
+\begin{document}
+
+$if(cover-image)$
+
+\clearpage
+\thispagestyle{empty}
+
+% hack to make a blank page by inserting a space
+\ 
+
+
+\AddToShipoutPictureBG*{% Add picture to current page
+  \AtStockLowerLeft{% Add picture to lower-left corner of paper stock
+    \includegraphics[width=\paperwidth,height=\paperheight]{$cover-image$}}%
+}
+
+% http://tex.stackexchange.com/questions/24988/how-to-place-an-image-over-a-full-including-bleed-page-in-memoir
+% for memoir class use \stockwidth and \stockheight
+
+% \bigskip
+% \begin{figure*}\includegraphics[width=1\linewidth]{$cover-image$}\end{figure*}
+
+\clearpage
+\newpage
+\thispagestyle{empty}
+
+\
+
+% open the title on a recto page
+\clearpage
+\newpage
+\thispagestyle{empty}
+
+$if(title)$
+
+\maketitle
+
+$if(disclaimer)$
+\vspace*{\fill}
+$disclaimer$
+\clearpage
+\newpage
+\thispagestyle{empty}
+$endif$
+$endif$
+
+$if(cover-note)$
+\bigskip
+\noindent {\sffamily\bfseries \color{pagesectioning} About the Cover} \\
+\smallskip
+$cover-note$
+\medskip
+$endif$
+
+
+$if(author-note)$
+\bigskip
+\noindent {\sffamily\bfseries \color{pagesectioning} About the Author} \\
+\smallskip
+$author-note$
+\medskip
+$endif$
+
+$if(copyright-page)$
+\vspace*{\fill}
+
+\thispagestyle{empty}
+%% copyrightpage
+\begingroup
+\footnotesize
+\parindent 0pt
+\parskip \baselineskip
+\textcopyright{} $if(copyright-year)$$copyright-year$$endif$ $if(author)$$for(author)$$author.name$$sep$ \and $endfor$$endif$ \  All rights reserved.
+\endgroup
+\clearpage
+\normalsize
+\newpage
+$endif$
+
+$if(dedication)$
+
+\thispagestyle{empty}
+
+\par\vspace*{.35\textheight}{\centering $dedication$ \par}
+
+\clearpage
+\normalsize
+\newpage
+
+$endif$
+
+\chapterstyle{microdoc}
+\pagestyle{kjh}
+
+% Frontmatter begins here
+\frontmatter
+\pagenumbering{roman} 
+$endif$
+
+$if(abstract)$
+\begin{abstract}
+\noindent $abstract$
+\end{abstract}
+$endif$
+
+$for(include-before)$
+$include-before$
+$endfor$
+
+$if(toc)$
+{
+$if(colorlinks)$
+\hypersetup{linkcolor=$if(toccolor)$DarkSlateBlue$toccolor$$else$black$endif$}
+$endif$
+\setcounter{tocdepth}{$toc-depth$}
+{\sffamily
+\begin{KeepFromToc}  
+  \tableofcontents
+\end{KeepFromToc}  
+}
+}
+$endif$
+$if(lot)$
+{\sffamily
+  \listoftables
+  }
+$endif$
+$if(lof)$
+{\sffamily
+  \listoffigures
+  }
+$endif$
+
+% Main matter starts here
+% \mainmatter
+% For this template \mainmatter defined in the text, after the Preface
+
+$body$
+
+% \backmatter
+\twocolumn
+
+$if(natbib)$
+$if(bibliography)$
+$if(biblio-title)$
+$if(book-class)$
+\renewcommand\bibname{$biblio-title$}
+$else$
+\renewcommand\refname{$biblio-title$}
+$endif$
+$endif$
+\bibliography{$for(bibliography)$$bibliography$$sep$,$endfor$}
+
+$endif$
+$endif$
+$if(biblatex)$
+\printbibliography$if(biblio-title)$[title=$biblio-title$]$endif$
+$endif$
+
+
+
+$if(colophon-note)$
+\clearpage
+\newpage
+\onecolumn
+\normalsize
+\thispagestyle{empty}
+{\sffamily\bfseries\color{pagesectioning} Colophon} \\
+\smallskip
+$colophon-note$
+$endif$
+
+$for(include-after)$
+$include-after$
+$endfor$
+
+\end{document}
