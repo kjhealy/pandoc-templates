@@ -11,8 +11,8 @@ A collection of support files for use with Pandoc, and specifically for helping 
 What's included?
 
 - Some [Pandoc](http://johnmacfarlane.net/pandoc/) templates for an
-  article in PDF (vita LaTeX) or HTML. These go in
-  `~/.pandoc/templates`. These can be be pointed to directly with the
+  article in PDF (via LaTeX) or HTML. These go in
+  `~/.pandoc/templates`. These can be pointed to directly with the
   `--template=` switch as appropriate. The `latex.template` and
   `xelatex.template` depend on the style files in
   [latex-custom-kjh](http://kjhealy.github.com/latex-custom-kjh/).
