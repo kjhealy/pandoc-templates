@@ -1,0 +1,110 @@
+\documentclass[11pt,article,oneside]{memoir}
+\usepackage[minion]{rmd-preamble-pdflatex}
+\input{vc}
+
+$if(listings)$
+\usepackage{listings}
+\lstset{
+        basicstyle=\small\ttfamily,
+        frame=single,
+        float}
+$endif$
+$if(lhs)$
+\lstnewenvironment{code}{\lstset{language=r,basicstyle=\small\ttfamily}}{}
+$endif$
+$if(highlighting-macros)$
+$highlighting-macros$
+$endif$
+$if(verbatim-in-note)$
+\usepackage{fancyvrb}
+$endif$
+$if(tables)$
+\usepackage{longtable}
+$endif$
+
+$if(graphics)$
+\usepackage{graphicx}
+% We will generate all images so they have a width \maxwidth. This means
+% that they will get their normal width if they fit onto the page, but
+% are scaled down if they would overflow the margins.
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+\else\Gin@nat@width\fi}
+\makeatother
+\let\Oldincludegraphics\includegraphics
+\renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=\maxwidth]{#1}}
+$endif$
+
+$if(title)$
+\title{\bigskip \bigskip $title$$if(thanks)$\thanks{$thanks$} $endif$ }
+$endif$ 
+
+%\author{$for(author)$$author$$sep$\\$endfor$}
+
+\author{$for(author)$\Large $author.name$\vspace{0.05in} \newline\normalsize\emph{$author.affiliation$} \newline\footnotesize $author.email$\vspace*{0.2in}\newline $sep$ \and $endfor$}
+
+%\author{$for(author)$$author.name$ ($author.affiliation$)$sep$ \and $endfor$}
+
+\date{}
+
+$for(header-includes)$
+$header-includes$
+$endfor$
+
+\begin{document}  
+\setkeys{Gin}{width=1\textwidth} 	
+%\setromanfont[Mapping=tex-text,Numbers=OldStyle]{Minion Pro} 
+%\setsansfont[Mapping=tex-text]{Minion Pro} 
+%\setmonofont[Mapping=tex-text,Scale=0.8]{Pragmata}
+\chapterstyle{article-4} 
+\pagestyle{kjh}
+
+\published{$date$.}
+
+$if(title)$
+\maketitle
+$endif$
+
+$if(toc)$
+{
+\hypersetup{linkcolor=black}
+\setcounter{tocdepth}{$toc-depth$}
+\tableofcontents
+}
+$endif$
+
+$if(abstract)$
+
+\begin{abstract}
+
+\vspace*{-0.75in}\noindent \emph{Abstract:} $abstract$
+
+\end{abstract}
+
+$endif$
+
+$body$
+
+$if(natbib)$
+$if(biblio-files)$
+$if(biblio-title)$
+$if(book-class)$
+\renewcommand\bibname{Bibliography}
+$else$
+\renewcommand\refname{References}
+$endif$
+$endif$
+
+\bibliography{$biblio-files$}
+
+$endif$
+$endif$
+$if(biblatex)$
+\printbibliography$if(biblio-title)$[title=References]$endif$
+
+$endif$
+$for(include-after)$
+$include-after$
+
+$endfor$
+\end{document}
