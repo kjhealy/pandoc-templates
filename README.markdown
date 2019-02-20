@@ -11,11 +11,13 @@ A collection of support files for use with Pandoc, and specifically for helping 
 What's included?
 
 - Some [Pandoc](http://johnmacfarlane.net/pandoc/) templates for an
-  article in PDF (vita LaTeX) or HTML. These go in
+  article in PDF (vita LaTeX), HTML, or Microsoft Word. These go in
   `~/.pandoc/templates`. These can be be pointed to directly with the
   `--template=` switch as appropriate. The `latex.template` and
   `xelatex.template` depend on the style files in
   [latex-custom-kjh](https://github.com/kjhealy/latex-custom-kjh/).
+  The Word reference documents depend on you having Myriad Pro and
+  Minion Pro installed.
 - In R, knitr's `knit()` function will turn `.Rmd` files into `.md`
   files. The configuration file in the `knitr/` folder is an example
   to help you produce HTML or `.tex` using knitr's `pandoc()` helper
