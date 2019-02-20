@@ -4,7 +4,8 @@
 ## and .pdf output files (complete with bibliography, if present) from
 ## your markdown or Rmarkdown fies. 
 ## -	Change the paths at the top of the file as needed.
-## -	Using `make` without arguments will generate html, tex, pdf, and docx 
+## -    If you're just starting with a markdown file, using `make`
+##      without arguments will generate html, tex, pdf, and docx 
 ## 	output files from all of the files with the designated markdown
 ##	extension. The default is `.md` but you can change this. 
 ## -	You can specify an output format with `make tex`, `make pdf`,  
@@ -13,11 +14,11 @@
 ## 	in your working directory. Make sure you do not have files in these
 ##	formats that you want to keep! 
 
-## Markdown extension (e.g. md, markdown, mdown).
-MEXT = md
+## All Rmarkdown files in the working directory
+RSRC = $(wildcard *.Rmd)
 
-## All markdown files in the working directory
-SRC = $(wildcard *.$(MEXT))
+## All Markdown Files in the working directory
+SRC = $(wildcard *.md)
 
 ## Location of Pandoc support files.
 PREFIX = /Users/kjhealy/.pandoc
@@ -34,8 +35,7 @@ OPTIONS = markdown+simple_tables+table_captions+yaml_metadata_block+smart
 ## MS Word template
 DOCXTEMPLATE = /Users/kjhealy/.pandoc/templates/rmd-minion-reference.docx
 
-
-MD=$(SRC:.Rmd=.md)
+MD=$(RSRC:.Rmd=.md)
 
 PDFS=$(SRC:.md=.pdf)
 HTML=$(SRC:.md=.html)

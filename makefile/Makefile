@@ -13,6 +13,10 @@
 ## 	in your working directory. Make sure you do not have files in these
 ##	formats that you want to keep!
 
+
+## All Rmarkdown files in the working directory
+RSRC = $(wildcard *.Rmd)
+
 ## Markdown extension (e.g. md, markdown, mdown).
 MEXT = md
 
@@ -34,17 +38,16 @@ OPTIONS = markdown+simple_tables+table_captions+yaml_metadata_block+smart
 ## MS Word template
 DOCXTEMPLATE = /Users/kjhealy/.pandoc/templates/rmd-minion-reference.docx
 
-
-
+MD=$(RSRC:.Rmd=.md)
 
 PDFS=$(SRC:.md=.pdf)
 HTML=$(SRC:.md=.html)
 TEX=$(SRC:.md=.tex)
 DOCX=$(SRC:.md=.docx)
 
+all:	$(MD) $(PDFS) $(HTML) $(TEX) $(DOCX)
 
-all:	$(PDFS) $(HTML) $(TEX) $(DOCX)
-
+md:	clean $(MD)
 pdf:	clean $(PDFS)
 html:	clean $(HTML)
 tex:	clean $(TEX)
