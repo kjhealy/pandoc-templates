@@ -9,7 +9,6 @@ PDF                        |HTML                       | Word
 :-------------------------:|:-------------------------:|:-------------------------:
 ![](examples/screenshots/pdf_output.png)  |  ![](examples/screenshots/html_output.png )  |  ![](examples/screenshots/docx_output.png)
 
-![Sample PDF template](examples/screenshots/pdf_output.png  "Sample PDF template")
 
 ## Notes
 
