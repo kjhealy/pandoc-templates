@@ -4,6 +4,11 @@
 
 A collection of support files for use with Pandoc, and specifically for helping to turn pandoc markdown files into nice HTML, LaTeX, and PDF output. These files go in your `~/.pandoc/` folder and are designed to work with the style and configuration material provided in [latex-custom-kjh](https://github.com/kjhealy/latex-custom-kjh/), [socbibs](https://github.com/kjhealy/socbibs), and the [Emacs Starter Kit for the Social Sciences](https://kieranhealy.org/resources/emacs-starter-kit). The only real dependencies are the latex class and style files in [latex-custom-kjh](http://github.com/kjhealy/latex-custom-kjh), however.
 
+
+PDF                        |HTML                       | Word
+:-------------------------:|:-------------------------:|:-------------------------:
+![](examples/screenshots/pdf_output.png)  |  ![](examples/screenshots/html_output.png )  |  ![](examples/screenshots/docx_output.png)
+
 ![Sample PDF template](examples/screenshots/pdf_output.png  "Sample PDF template")
 
 ## Notes
