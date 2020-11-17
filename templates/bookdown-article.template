@@ -5,6 +5,7 @@
 $if(listings)$
 \usepackage{listings}
 \lstset{frame=none, columns=fixed, basicstyle=\ttfamily, keepspaces=true,showstringspaces=false, numbers=none, backgroundcolor=\color[gray]{0.95}}
+\newcommand{\passthrough}[1]{#1}
 $endif$
 $if(lhs)$
 \lstnewenvironment{code}{\lstset{language=r,basicstyle=\small\ttfamily}}{}
