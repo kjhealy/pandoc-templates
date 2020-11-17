@@ -4,8 +4,9 @@
 ## and .pdf output files (complete with bibliography, if present) from
 ## your markdown or Rmarkdown fies. 
 ## -	Change the paths at the top of the file as needed.
-## -	Using `make` without arguments will generate html, tex, and pdf 
-## 	output files from all of the files with the designated markdown
+## -    If you're just starting with a markdown file, using `make`
+##      without arguments will generate html, tex, pdf, and docx 
+## 	output files from all of the files with the designated Rmarkdown
 ##	extension. The default is `.md` but you can change this. 
 ## -	You can specify an output format with `make tex`, `make pdf`,  
 ## - 	`make html`, or `make docx`.
@@ -13,11 +14,8 @@
 ## 	in your working directory. Make sure you do not have files in these
 ##	formats that you want to keep! 
 
-## Markdown extension (e.g. md, markdown, mdown).
-MEXT = md
-
-## All markdown files in the working directory
-SRC = $(wildcard *.$(MEXT))
+## All Markdown Files in the working directory
+SRC = $(wildcard *.Rmd)
 
 ## Location of Pandoc support files.
 PREFIX = /Users/kjhealy/.pandoc
@@ -31,12 +29,14 @@ CSL = apsa
 ## Pandoc options to use
 OPTIONS = markdown+simple_tables+table_captions+yaml_metadata_block+smart
 
-MD=$(SRC:.Rmd=.md)
+## MS Word template
+DOCXTEMPLATE = /Users/kjhealy/.pandoc/templates/rmd-minion-reference.docx
 
-PDFS=$(SRC:.md=.pdf)
-HTML=$(SRC:.md=.html)
-TEX=$(SRC:.md=.tex)
-DOCX=$(SRC:.md=.docx)
+MD=$(SRC:.Rmd=.md)
+PDFS=$(SRC:.Rmd=.pdf)
+HTML=$(SRC:.Rmd=.html)
+TEX=$(SRC:.Rmd=.tex)
+DOCX=$(SRC:.Rmd=.docx)
 
 
 all:	$(MD) $(PDFS) $(HTML) $(TEX) $(DOCX)
@@ -62,7 +62,8 @@ docx:	clean $(DOCX)
 
 
 %.docx: %.md
-	pandoc -r $(OPTIONS) -w docx   --filter pandoc-citeproc --csl=$(PREFIX)/csl/$(CSL).csl --bibliography=$(BIB) -o $@ $<
+	pandoc -r $(OPTIONS) -w docx   --filter pandoc-citeproc --csl=$(PREFIX)/csl/$(CSL).csl --bibliography=$(BIB) --reference-doc=$(DOCXTEMPLATE) -o $@ $<
+
 
 clean:
-	rm -f *.html *.pdf *.tex *.docx
+	rm -f *.md *.html *.pdf *.tex *.docx

@@ -9,7 +9,7 @@
 \usepackage{fancyhdr}
 \usepackage{ifpdf,ifxetex,ifluatex}
 \usepackage{fixltx2e} % provides \textsubscript
-\usepackage[$if(listings)$listings$endif$,$if(useminion)$minion$endif$,$if(sanshead)$sanshead$endif$]{org-preamble-pdflatex}
+\usepackage[$if(uselistings)$listings$endif$,$if(useminion)$minion$endif$,$if(sanshead)$sanshead$endif$]{org-preamble-pdflatex}
 
 $if(sanshead)$
 \def\sfdefault{SourceSansPro-TLF}
@@ -107,7 +107,7 @@ $if(tables)$
 $endif$
 
 % listings
-$if(listings)$
+$if(uselistings)$
 % \usepackage{fancyvrb}
 % \usepackage{listings}
 % \lstset{frame=single, columns=fixed, basicstyle=\footnotesize\ttfamily, keepspaces=true, showstringspaces=false, numbers=none, framesep=10pt, xleftmargin=10pt,xrightmargin=10pt}
@@ -135,6 +135,16 @@ $endif$
 % tightlist macro required by pandoc >= 1.14
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+% CSL environment pandoc >=2.8
+$if(csl-refs)$
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newenvironment{cslreferences}%
+  {$if(csl-hanging-indent)$\setlength{\parindent}{0pt}%
+  \everypar{\setlength{\hangindent}{\cslhangindent}}\ignorespaces$endif$}%
+  {\par}
+$endif$
 
 % title / author / date
 $if(title)$
