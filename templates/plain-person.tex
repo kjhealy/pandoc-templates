@@ -9,7 +9,7 @@
 \usepackage{fancyhdr}
 \usepackage{ifpdf,ifxetex,ifluatex}
 \usepackage{fixltx2e} % provides \textsubscript
-\usepackage[$if(uselistings)$listings$endif$,$if(useminion)$minion$endif$,$if(sanshead)$sanshead$endif$]{org-preamble-pdflatex}
+\usepackage[$if(useminion)$minion$endif$,$if(sanshead)$sanshead$endif$]{org-preamble-pdflatex}
 
 $if(sanshead)$
 \def\sfdefault{SourceSansPro-TLF}
@@ -107,12 +107,12 @@ $if(tables)$
 $endif$
 
 % listings
-$if(uselistings)$
-% \usepackage{fancyvrb}
-% \usepackage{listings}
-% \lstset{frame=single, columns=fixed, basicstyle=\footnotesize\ttfamily, keepspaces=true, showstringspaces=false, numbers=none, framesep=10pt, xleftmargin=10pt,xrightmargin=10pt}
-\newcommand{\passthrough}[1]{#1}
-$endif$
+% $if(uselistings)$
+%  % \usepackage{fancyvrb}
+%  % \usepackage{listings}
+%  % \lstset{frame=single, columns=fixed, basicstyle=\footnotesize\ttfamily, keepspaces=true, showstringspaces=false, numbers=none, framesep=10pt, xleftmargin=10pt,xrightmargin=10pt}
+% \newcommand{\passthrough}[1]{#1}
+% $endif$
 
 % pandoc-crossref
 $if(pandoc-crossref)$
