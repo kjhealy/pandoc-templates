@@ -8,6 +8,7 @@ $if(listings)$
         basicstyle=\small\ttfamily,
         frame=single,
         float}
+\newcommand{\passthrough}[1]{#1}        
 $endif$
 $if(lhs)$
 \lstnewenvironment{code}{\lstset{language=r,basicstyle=\small\ttfamily}}{}
@@ -38,7 +39,7 @@ $endif$
 $if(csl-refs)$
 \newlength{\cslhangindent}
 \setlength{\cslhangindent}{1.5em}
-\newenvironment{cslreferences}%
+\newenvironment{CSLReferences}%
   {$if(csl-hanging-indent)$\setlength{\parindent}{0pt}%
   \everypar{\setlength{\hangindent}{\cslhangindent}}\ignorespaces$endif$}%
   {\par}

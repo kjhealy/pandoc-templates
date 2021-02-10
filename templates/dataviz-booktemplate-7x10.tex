@@ -307,6 +307,14 @@ $else$
 $endif$
 
 % citations
+$if(csl-refs)$
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newenvironment{CSLReferences}%
+  {$if(csl-hanging-indent)$\setlength{\parindent}{0pt}%
+  \everypar{\setlength{\hangindent}{\cslhangindent}}\ignorespaces$endif$}%
+  {\par}
+$endif$
 $if(natbib)$
 \usepackage{natbib}
 \bibliographystyle{$if(biblio-style)$$biblio-style$$else$plainnat$endif$}
@@ -338,6 +346,7 @@ $if(listings)$
 \usepackage{fancyvrb}
 \usepackage{listings}
 \lstset{frame=single, columns=fixed, basicstyle=\footnotesize\ttfamily, keepspaces=true, showstringspaces=false, numbers=none, framesep=10pt, xleftmargin=10pt,xrightmargin=10pt}
+\newcommand{\passthrough}[1]{#1}
 $endif$
 
 % pandoc-crossref
@@ -365,7 +374,7 @@ $endif$
 $if(csl-refs)$
 \newlength{\cslhangindent}
 \setlength{\cslhangindent}{1.5em}
-\newenvironment{cslreferences}%
+\newenvironment{CSLReferences}%
   {$if(csl-hanging-indent)$\setlength{\parindent}{0pt}%
   \everypar{\setlength{\hangindent}{\cslhangindent}}\ignorespaces$endif$}%
   {\par}
