@@ -36,6 +36,11 @@ $if(graphics)$
 \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=\maxwidth]{#1}}
 $endif$
 
+$if(bibind)$
+%% Custom hanging indent for vita items
+\def\ind{\hangindent=0.8 true cm\hangafter=1 \noindent}
+$endif$
+
 $if(csl-refs)$
 \newlength{\cslhangindent}
 \setlength{\cslhangindent}{1.5em}
@@ -53,7 +58,6 @@ $endif$
 
 \author{$for(author)$\Large $author.name$\vspace{0.05in} \newline\normalsize\emph{$author.affiliation$} \newline\footnotesize \url{$author.email$}\vspace*{0.2in}\newline $sep$ \and $endfor$}
 
-%\author{$for(author)$$author.name$ ($author.affiliation$)$sep$ \and $endfor$}
 
 \date{}
 
