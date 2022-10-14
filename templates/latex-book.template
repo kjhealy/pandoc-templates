@@ -1,0 +1,139 @@
+\documentclass[11pt]{memoir}
+\usepackage[minion]{org-preamble-pdflatex}
+\input{vc}
+
+$if(listings)$
+\usepackage{listings}
+\lstset{
+        basicstyle=\small\ttfamily,
+        frame=single,
+        float}
+\newcommand{\passthrough}[1]{#1}        
+$endif$
+$if(lhs)$
+\lstnewenvironment{code}{\lstset{language=r,basicstyle=\small\ttfamily}}{}
+$endif$
+$if(highlighting-macros)$
+$highlighting-macros$
+$endif$
+$if(verbatim-in-note)$
+\usepackage{fancyvrb}
+$endif$
+$if(tables)$
+\usepackage{longtable}
+$endif$
+
+$if(graphics)$
+\usepackage{graphicx}
+% We will generate all images so they have a width \maxwidth. This means
+% that they will get their normal width if they fit onto the page, but
+% are scaled down if they would overflow the margins.
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+\else\Gin@nat@width\fi}
+\makeatother
+\let\Oldincludegraphics\includegraphics
+\renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=\maxwidth]{#1}}
+$endif$
+
+$if(bibind)$
+%% Custom hanging indent for vita items
+\def\ind{\hangindent=0.8 true cm\hangafter=1 \noindent}
+$endif$
+
+$if(csl-refs)$
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newenvironment{CSLReferences}%
+  {$if(csl-hanging-indent)$\setlength{\parindent}{0pt}%
+  \everypar{\setlength{\hangindent}{\cslhangindent}}\ignorespaces$endif$}%
+  {\par}
+$endif$
+
+$if(title)$
+\title{\bigskip \bigskip $title$$if(thanks)$\thanks{$thanks$} $endif$ }
+$endif$
+
+%\author{$for(author)$$author$$sep$\\$endfor$}
+
+\author{$for(author)$\Large $author.name$\vspace{0.05in} \newline\normalsize\emph{$author.affiliation$} \newline\footnotesize \url{$author.email$}\vspace*{0.2in}\newline $sep$ \and $endfor$}
+
+
+\date{}
+
+$for(header-includes)$
+$header-includes$
+$endfor$
+
+\setcounter{secnumdepth}{0}
+\maxsecnumdepth{chapter}
+
+
+
+\begin{document}  
+\setkeys{Gin}{width=1\textwidth} 	
+%\setromanfont[Mapping=tex-text,Numbers=OldStyle]{Minion Pro} 
+%\setsansfont[Mapping=tex-text]{Minion Pro} 
+%\setmonofont[Mapping=tex-text,Scale=0.8]{Berkeley Mono}
+
+\frontmatter
+
+\chapterstyle{minionbook}
+\pagestyle{kjh}
+
+\published{$date$.}
+
+$if(title)$
+\maketitle
+$endif$
+
+$if(toc)$
+{
+\newpage
+\hypersetup{linkcolor=black}
+\setcounter{tocdepth}{$toc-depth$}
+\tableofcontents*
+\newpage
+}
+\clearpage
+$endif$
+
+$if(abstract)$
+
+\begin{abstract}
+
+\vspace*{-0.75in}\noindent \emph{Abstract:} $abstract$
+
+\end{abstract}
+
+$endif$
+
+\mainmatter
+
+$body$
+
+\backmatter
+
+$if(natbib)$
+$if(biblio-files)$
+$if(biblio-title)$
+$if(book-class)$
+\renewcommand\bibname{Bibliography}
+$else$
+\renewcommand\refname{References}
+$endif$
+$endif$
+
+\bibliography{$biblio-files$}
+
+$endif$
+$endif$
+$if(biblatex)$
+\printbibliography$if(biblio-title)$[title=References]$endif$
+
+$endif$
+$for(include-after)$
+$include-after$
+
+$endfor$
+\end{document}
