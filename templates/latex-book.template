@@ -79,7 +79,7 @@ $endfor$
 \frontmatter
 
 \chapterstyle{minionbook}
-\pagestyle{kjh}
+\pagestyle{kjhbook}
 
 \published{$date$.}
 
@@ -96,6 +96,7 @@ $if(toc)$
 \newpage
 }
 \clearpage
+\markboth{}{}
 $endif$
 
 $if(abstract)$
