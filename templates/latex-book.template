@@ -1,4 +1,4 @@
-\documentclass[11pt]{memoir}
+\documentclass[12pt]{memoir}
 \usepackage[minion]{org-preamble-pdflatex}
 \input{vc}
 
@@ -79,13 +79,36 @@ $endfor$
 \frontmatter
 
 \chapterstyle{minionbook}
-\pagestyle{kjhbook}
 
+\begin{titlingpage}
 \published{$date$.}
 
 $if(title)$
 \maketitle
 $endif$
+\end{titlingpage}
+
+\pagestyle{kjhbook}
+
+%%% ------------------------------------------------------------------
+%%% Copyright page
+%%% ------------------------------------------------------------------
+\clearpage
+
+\begingroup
+\footnotesize
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{\baselineskip}
+%%\ttfamily
+\textcopyright{} $for(author)$$author.name$ \and $endfor$
+
+\textbf{Draft Only. Please do not cite, circulate or quote.}
+
+
+\endgroup
+\clearpage
+%%% ------------------------------------------------------------------
+
 
 $if(toc)$
 {
