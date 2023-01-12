@@ -127,6 +127,9 @@ $endif$
 $if(toc)$
 {
 \newpage
+
+\setupparasecs
+
 \hypersetup{linkcolor=black}
 \setcounter{tocdepth}{$toc-depth$}
 \tableofcontents*
