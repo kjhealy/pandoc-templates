@@ -125,18 +125,11 @@ $endif$
 
 
 $if(toc)$
-{
-\newpage
-
-\setupparasecs
-
-\hypersetup{linkcolor=black}
+$if(colorlinks)$
+\hypersetup{linkcolor=$if(toccolor)$$toccolor$$else$$endif$}
+$endif$
 \setcounter{tocdepth}{$toc-depth$}
 \tableofcontents*
-\newpage
-}
-\clearpage
-\markboth{}{}
 $endif$
 
 $if(abstract)$
