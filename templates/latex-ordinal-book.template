@@ -95,7 +95,8 @@ $endfor$
 \chapterstyle{minionbook}
 
 \begin{titlingpage}
-\published{$date$.}
+%\published{$date$.}
+\published{\texttt{Incomplete draft, not for circulation. Version \VCRevision\ produced on \VCDateTEX.}}
 
 $if(title)$
 \maketitle
