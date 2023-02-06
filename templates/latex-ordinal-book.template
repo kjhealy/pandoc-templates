@@ -96,7 +96,7 @@ $endfor$
 
 \begin{titlingpage}
 %\published{$date$.}
-\published{\texttt{Incomplete draft, not for circulation. Version \VCRevision\ produced on \VCDateTEX.}}
+\published{\texttt{Draft only. Not for circulation. Version \VCRevision\ produced on \VCDateTEX.}}
 
 $if(title)$
 \maketitle
