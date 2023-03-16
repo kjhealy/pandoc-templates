@@ -1,4 +1,4 @@
-\documentclass[12pt]{memoir}
+\documentclass[11pt]{memoir}
 \usepackage[minion]{org-preamble-pdflatex}
 \input{vc}
 
@@ -55,6 +55,8 @@ $if(csl-refs)$
   \ifnum #2 > 0
   \setlength{\parskip}{#2\baselineskip}
   \fi
+  % make if small
+  \footnotesize
  }%
  {}
 \usepackage{calc}
