@@ -1,4 +1,4 @@
-\documentclass[11pt]{memoir}
+\documentclass[12pt]{memoir}
 \usepackage[minion]{org-preamble-pdflatex}
 \input{vc}
 
