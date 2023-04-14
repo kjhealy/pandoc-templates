@@ -56,7 +56,7 @@ $if(csl-refs)$
   \setlength{\parskip}{#2\baselineskip}
   \fi
   % make if small
-  \footnotesize
+  \scriptsize
  }%
  {}
 \usepackage{calc}
