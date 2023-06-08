@@ -66,6 +66,19 @@ $if(csl-refs)$
 \newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
 $endif$
 
+%% Typeset notes as a single paragraph
+\usepackage[para]{footmisc}
+
+%% Adjust the space after the fn mark in the para fn area
+%% https://tex.stackexchange.com/questions/586412/differences-between-usepackagefootmisc-and-usepackageparafootmisc-and-ho
+\makeatletter
+  \long\def\@makefntext#1{\leavevmode
+    \@makefnmark\nobreak
+    \hskip.1em
+    \relax#1%
+  }
+\makeatother
+
 $if(title)$
 \title{\bigskip \bigskip $title$$if(thanks)$\thanks{$thanks$} $endif$ }
 $endif$
